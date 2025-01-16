@@ -56,8 +56,8 @@
       margin: 0.5rem 1rem auto auto;
       display: flex;
       gap: 1.2rem;
-      transform: translateY(7px);
-      transition: all 0.3s ease-in-out;
+      transform: translateY(9px);
+      transition: all 0.3s ease-out;
     }
 
     .image-item-name {
@@ -67,7 +67,7 @@
       margin: auto auto 0.5rem auto;
       z-index: 2;
       transform: translateY(-5px);
-      transition: all 0.3s ease-in-out;
+      transition: all 0.3s ease-out;
     }
 
     &:hover {

@@ -18,7 +18,6 @@ export default function ImageIconButton({ title, icon, onClick }: ImageIconButto
     >
       <IconButton
         sx={{
-          //   border: '1px solid #fff',
           backgroundColor: 'rgba(255, 255, 255, 0.3)',
           color: '#fff',
           '&:hover': {
