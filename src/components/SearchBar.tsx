@@ -1,7 +1,7 @@
 import TextField from '@mui/material/TextField';
 import SearchIcon from '@mui/icons-material/Search';
 import Box from '@mui/material/Box';
-import { Button } from '@mui/material';
+import { Button, Icon, IconButton, InputAdornment } from '@mui/material';
 
 interface SearchBarProps {
   onChange: (value: string) => void;
@@ -14,6 +14,7 @@ export default function SearchBar({ onChange, onSearch }: SearchBarProps) {
       <Box sx={{ display: 'flex', my: 2 }}>
         <TextField
           variant="outlined"
+          color="primary"
           placeholder="請輸入關鍵字，如「春日影」、「收入太少」..."
           fullWidth
           name="search"
@@ -25,19 +26,21 @@ export default function SearchBar({ onChange, onSearch }: SearchBarProps) {
               onSearch();
             }
           }}
-          //   slotProps={{
-          //     input: {
-          //       startAdornment: (
-          //         <InputAdornment position="start">
-          //           <SearchIcon />
-          //         </InputAdornment>
-          //       ),
-          //     },
-          //   }}
+          slotProps={{
+            input: {
+              endAdornment: (
+                <InputAdornment position="end">
+                  <IconButton type="button" onClick={onSearch}>
+                    <SearchIcon />
+                  </IconButton>
+                </InputAdornment>
+              ),
+            },
+          }}
         />
-        <Button onClick={onSearch}>
+        {/* <Button onClick={onSearch}>
           <SearchIcon />
-        </Button>
+        </Button> */}
       </Box>
     </>
   );

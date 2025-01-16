@@ -1,4 +1,4 @@
-import { Box, IconButton, Tooltip, Zoom } from '@mui/material';
+import { IconButton, Tooltip, Zoom } from '@mui/material';
 import { ReactNode } from 'react';
 
 interface ImageIconButtonProps {
@@ -10,16 +10,18 @@ export default function ImageIconButton({ title, icon }: ImageIconButtonProps) {
     <Tooltip
       arrow
       title={title}
-      placement="right"
+      placement="bottom"
       slots={{
         transition: Zoom,
       }}
     >
       <IconButton
         sx={{
+          //   border: '1px solid #fff',
+          backgroundColor: 'rgba(255, 255, 255, 0.3)',
           color: '#fff',
           '&:hover': {
-            backgroundColor: 'rgba(255, 200, 0, 0.2)', // Red hover background
+            backgroundColor: 'rgba(255, 200, 0, 0.3)', // Red hover background
             color: 'yellow',
           },
         }}

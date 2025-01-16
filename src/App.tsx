@@ -4,6 +4,9 @@ import HeaderLayout from './layout/HeaderLayout';
 import HomePage from './pages/HomePage';
 
 const theme = createTheme({
+  palette: {
+    mode: 'dark',
+  },
   components: {
     MuiTooltip: {
       styleOverrides: {
