@@ -3,7 +3,7 @@ import { Box } from '@mui/material';
 export default function HeaderLayout() {
   return (
     <>
-      <Box sx={{ width: '100%', height: 50, backgroundColor: 'red' }}></Box>
+      <Box sx={{ px: 2, width: '100%', height: 30, color: '#fff' }}>Ave Mujica</Box>
     </>
   );
 }

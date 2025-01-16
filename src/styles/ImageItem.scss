@@ -56,17 +56,30 @@
       margin: 0.5rem 1rem auto auto;
       display: flex;
       gap: 1.2rem;
+      transform: translateY(7px);
+      transition: all 0.3s ease-in-out;
     }
+
     .image-item-name {
       color: #fff;
       text-align: center;
       font-weight: 800;
       margin: auto auto 0.5rem auto;
       z-index: 2;
+      transform: translateY(-5px);
+      transition: all 0.3s ease-in-out;
     }
 
     &:hover {
       opacity: 100%;
+
+      .buttons {
+        transform: translateY(0px);
+      }
+
+      .image-item-name {
+        transform: translateY(0px);
+      }
     }
   }
 }

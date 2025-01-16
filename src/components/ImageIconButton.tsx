@@ -4,8 +4,9 @@ import { ReactNode } from 'react';
 interface ImageIconButtonProps {
   title: string;
   icon: ReactNode;
+  onClick: () => void;
 }
-export default function ImageIconButton({ title, icon }: ImageIconButtonProps) {
+export default function ImageIconButton({ title, icon, onClick }: ImageIconButtonProps) {
   return (
     <Tooltip
       arrow
@@ -25,6 +26,7 @@ export default function ImageIconButton({ title, icon }: ImageIconButtonProps) {
             color: 'yellow',
           },
         }}
+        onClick={onClick}
       >
         {icon}
       </IconButton>
