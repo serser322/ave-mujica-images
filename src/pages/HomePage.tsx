@@ -6,9 +6,6 @@ import ImageItem from '@/components/ImageItem';
 
 const defaultImageList = [
   {
-    name: 'Mortis, 講一下今天的感言',
-  },
-  {
     name: '不是獲得空前成功嗎',
   },
   {
