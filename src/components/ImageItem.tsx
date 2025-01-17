@@ -13,6 +13,7 @@ interface ImageItemProps {
 }
 
 export default function ImageItem({ image }: ImageItemProps) {
+  const placeholderUrl = new URL(`../assets/black.jpg`, import.meta.url).href;
   const url = new URL(`../assets/${image.name}.jpg`, import.meta.url).href;
 
   const [isLoaded, setIsLoaded] = useState(false);
@@ -54,28 +55,26 @@ export default function ImageItem({ image }: ImageItemProps) {
 
   return (
     <>
-      {!isLoaded ? (
-        <Skeleton variant="rounded" animation="wave" width={'100%'} height={60} />
-      ) : (
-        <Box className="image-item-wrapper">
-          <img
-            style={{ width: '100%', height: 'auto' }}
-            data-src={url}
-            alt={image.name}
-            className="lazyload"
-            onLoad={() => {
-              setIsLoaded(true);
-            }}
-          />
-          <Box className="image-item-overlay">
-            <Box className="buttons">
-              <ImageIconButton title="複製" icon={<ContentCopy />} onClick={copyImageToClipboard} />
-              <ImageIconButton title="下載" icon={<Download />} onClick={downloadImage} />
-            </Box>
-            <Box className="image-item-name">{image.name}</Box>
+      <Box className="image-item-wrapper">
+        <img
+          style={{ width: '100%', height: 'auto' }}
+          data-src={url}
+          alt={image.name}
+          src={placeholderUrl}
+          className="lazyload"
+          onLoad={() => {
+            setIsLoaded(true);
+          }}
+        />
+        {/* {isLoaded ? '' : <Skeleton variant="rectangular" width={'100%'} height={200} />} */}
+        <Box className="image-item-overlay">
+          <Box className="buttons">
+            <ImageIconButton title="複製" icon={<ContentCopy />} onClick={copyImageToClipboard} />
+            <ImageIconButton title="下載" icon={<Download />} onClick={downloadImage} />
           </Box>
+          <Box className="image-item-name">{image.name}</Box>
         </Box>
-      )}
+      </Box>
     </>
   );
 }

@@ -15,7 +15,7 @@ export default function SearchBar({ onChange, onSearch }: SearchBarProps) {
         <TextField
           variant="outlined"
           color="primary"
-          placeholder="請輸入關鍵字，如「春日影」、「收入太少」..."
+          placeholder="請輸入關鍵字..."
           fullWidth
           name="search"
           onChange={(e) => {

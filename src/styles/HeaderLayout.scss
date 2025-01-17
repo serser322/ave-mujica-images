@@ -1,0 +1,34 @@
+header {
+  //   display: flex;
+  //   align-items: center;
+  width: 100%;
+  //   height: 40px;
+  padding: 1rem;
+  color: #fff;
+
+  .logo {
+    width: 250px;
+    // height: 40px;
+    margin-right: 0.5rem;
+    img {
+      width: 100%;
+      //   height: 100%;
+    }
+  }
+
+  .line-through {
+    text-decoration: line-through;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  header {
+    padding: 1rem 2rem;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  header {
+    padding: 1rem 3rem;
+  }
+}
