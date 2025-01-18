@@ -38,9 +38,6 @@ export default function SearchBar({ onChange, onSearch }: SearchBarProps) {
             },
           }}
         />
-        {/* <Button onClick={onSearch}>
-          <SearchIcon />
-        </Button> */}
       </Box>
     </>
   );
