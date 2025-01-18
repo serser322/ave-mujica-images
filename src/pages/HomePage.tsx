@@ -172,28 +172,24 @@ const defaultImageList = [
   { name: '晚安，祝妳有個好夢' },
 ];
 
-console.log(defaultImageList.length);
-
 export default function HomePage() {
-  const [keyword, setKeyword] = useState('');
   const [imageList, setImageList] = useState<BaseImage[]>(defaultImageList);
 
-  const searchHandler = () => {
+  const searchHandler = (keyword: string) => {
     const filteredImageList = defaultImageList.filter((item) => item.name.includes(keyword));
     setImageList(filteredImageList);
   };
 
   useEffect(() => {
-    if (keyword === '') {
-      setImageList(defaultImageList);
-    }
-  }, [keyword]);
+    setImageList(defaultImageList);
+  }, []);
   return (
     <>
       <Box>
-        <SearchBar onChange={setKeyword} onSearch={searchHandler} />
+        <SearchBar onSearch={searchHandler} />
       </Box>
       <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
+        {imageList.length === 0 && <Box sx={{ mt: 2, color: '#e6e6e6' }}>查無截圖 QQ</Box>}
         {imageList.map((image) => (
           <ImageItem key={image.name} image={image} />
         ))}

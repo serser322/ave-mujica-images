@@ -1,7 +1,8 @@
-import { createTheme, ThemeProvider } from '@mui/material';
+import { Box, createTheme, ThemeProvider } from '@mui/material';
 import ContentLayout from './layout/ContentLayout';
 import HeaderLayout from './layout/HeaderLayout';
 import HomePage from './pages/HomePage';
+import FooterLayout from './layout/FooterLayout';
 
 const theme = createTheme({
   palette: {
@@ -22,10 +23,15 @@ function App() {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <HeaderLayout />
-        <ContentLayout>
-          <HomePage />
-        </ContentLayout>
+        <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', minHeight: '100vh' }}>
+          <Box>
+            <HeaderLayout />
+            <ContentLayout>
+              <HomePage />
+            </ContentLayout>
+          </Box>
+          <FooterLayout />
+        </Box>
       </ThemeProvider>
     </>
   );

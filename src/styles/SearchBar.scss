@@ -1,0 +1,16 @@
+.search-bar {
+  opacity: 0;
+  transform: translateX(20px);
+  animation: SearchBarComeIn ease 1s 0.3s forwards;
+}
+
+@keyframes SearchBarComeIn {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

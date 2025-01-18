@@ -8,6 +8,10 @@
   cursor: pointer;
   box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.2);
   transition: all 0.3s ease-out;
+  opacity: 0;
+  transform: translateY(-20px);
+  animation: ImageComeIn ease 1s 0.3s forwards;
+
   img {
     display: block;
     width: 100%;
@@ -105,5 +109,16 @@
 @media screen and (min-width: 992px) {
   .image-item-wrapper {
     width: 350px;
+  }
+}
+
+@keyframes ImageComeIn {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
   }
 }

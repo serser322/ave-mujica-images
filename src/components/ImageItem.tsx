@@ -6,7 +6,7 @@ import '@/styles/ImageItem.scss';
 import Box from '@mui/material/Box';
 import { ContentCopy, Download } from '@mui/icons-material';
 import ImageIconButton from './ImageIconButton';
-import { Skeleton } from '@mui/material';
+// import { Skeleton } from '@mui/material';
 
 interface ImageItemProps {
   image: BaseImage;
