@@ -1,0 +1,124 @@
+.image-item-wrapper {
+  width: 100%;
+  margin-bottom: 0.6rem;
+  height: fit-content;
+  border: 2px solid rgba(255, 255, 255, 0);
+  border-radius: 11px;
+  position: relative;
+  cursor: pointer;
+  box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease-out;
+  opacity: 0;
+  transform: translateY(-20px);
+  animation: ImageComeIn ease 1s 0.3s forwards;
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 0 solid #fff;
+    border-radius: 10px;
+  }
+
+  &:hover {
+    border: 2px solid #fff;
+    box-shadow: 0px 0px 12px 5px rgba(255, 255, 255, 0.3);
+    transform: scale(1.03);
+  }
+
+  .image-item-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    opacity: 0;
+    transition: all 0.3s ease-in-out;
+
+    &::before {
+      content: '';
+      position: absolute;
+      border-radius: 10px;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0.7) 0%,
+        rgba(0, 0, 0, 0.1) 30%,
+        rgba(0, 0, 0, 0.1) 70%,
+        rgba(0, 0, 0, 0.9) 100%
+      );
+    }
+
+    .buttons {
+      margin: 0.5rem 1rem auto auto;
+      display: flex;
+      gap: 1.2rem;
+      transform: translateY(10px);
+      transition: all 0.3s ease-out;
+    }
+
+    .image-item-name {
+      color: #fff;
+      text-align: center;
+      font-weight: 700;
+      font-size: 1.15rem;
+      margin: auto auto 0.5rem auto;
+      z-index: 2;
+      transform: translateY(-7px);
+      transition: all 0.3s ease-out;
+    }
+
+    &:hover {
+      opacity: 100%;
+
+      .buttons {
+        transform: translateY(0px);
+      }
+
+      .image-item-name {
+        transform: translateY(0px);
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 576px) {
+  .image-item-wrapper {
+    margin: 0.4rem;
+    width: 47%;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .image-item-wrapper {
+    width: 345px;
+    margin: 0.5rem;
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .image-item-wrapper {
+    width: 350px;
+  }
+}
+
+@keyframes ImageComeIn {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}

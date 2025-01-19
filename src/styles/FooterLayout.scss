@@ -1,0 +1,21 @@
+footer {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.7rem 0.3rem;
+  background: #1e1e1e;
+  color: rgb(224, 224, 224);
+}
+
+@media screen and (min-width: 576px) {
+  footer {
+    padding: 0.7rem 0.8rem;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  footer {
+    padding: 0.7rem 1.5rem;
+  }
+}

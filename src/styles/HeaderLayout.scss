@@ -1,0 +1,43 @@
+header {
+  width: 100%;
+  padding: 1rem;
+  color: #fff;
+  transform: translateX(-100%);
+  animation: HeaderComeIn ease 1.5s 0.5s forwards;
+  //   animation: name duration timing-function delay iteration-count direction fill-mode;
+
+  .logo {
+    width: 250px;
+    margin-right: 0.5rem;
+    img {
+      width: 100%;
+    }
+  }
+
+  .line-through {
+    text-decoration: line-through;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  header {
+    padding: 1rem 2rem;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  header {
+    padding: 1rem 3rem;
+  }
+}
+
+@keyframes HeaderComeIn {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
