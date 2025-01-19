@@ -1,50 +1,42 @@
-# React + TypeScript + Vite
+# Ave Mujica 截圖搜尋器
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<div align="center" >
+<small>就將一切 <del>對話訊息</del> 委身於Ave Mujica吧！</small>
+<br />
+<br/>
+<a href=""><strong>前往Ave Mujica 截圖搜尋器 »</strong></a>
+</div>
+<div align="center">
+<br/>
+<img src="https://imgur.com/KjItgM5.jpg" alt="example" width="400" height="auto">
+</div>
 
-Currently, two official plugins are available:
+## 關於
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+有鑑於不少大神蒐集與開發了關於MyGo梗圖相關的搜尋網、雲端、機器人...因此製作了此網站，讓自己與其他人，都能便利地搜尋母雞卡的截圖、梗圖、表情包，並將之用於各類訊息、留言回覆。
 
-## Expanding the ESLint configuration
+歡迎進入<a href="https://www.youtube.com/watch?v=dxmmSFQxWzM&list=PL12UaAf_xzfo6TAmxIM7rEvrJAB0rzAAO">BanG Dream - Ave Mujica</a>的世界！
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+網站<del>應該會</del>持續更新梗圖素材...
 
-- Configure the top-level `parserOptions` property like this:
+## 開發工具
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+- [![Vite][Vite]][Vite-url]
+- [![React][React.js]][React-url]
+- [![Mui][Mui]][Mui-url]
+- [![Cloudflare][Cloudflare]][Cloudflare-url]
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## 圖片來源
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+<a href="https://www.youtube.com/watch?v=dxmmSFQxWzM&list=PL12UaAf_xzfo6TAmxIM7rEvrJAB0rzAAO"><strong>BanG Dream - Ave Mujica (木棉花) »</strong></a>
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+## 版本 1.0.0
+
+[Vite]: https://img.shields.io/badge/Vite-B73BFE?style=for-the-badge&logo=vite&logoColor=FFD62E
+[Vite-url]: https://vitejs.dev/
+[React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
+[React-url]: https://reactjs.org/
+[Mui]: https://img.shields.io/badge/Material%20UI-007FFF?style=for-the-badge&logo=mui&logoColor=white
+[Mui-url]: https://mui.com/material-ui/getting-started/
+[Cloudflare]: https://img.shields.io/badge/Cloudflare-F38020?style=for-the-badge&logo=Cloudflare&logoColor=white
+[Cloudflare-url]: https://www.cloudflare.com/
