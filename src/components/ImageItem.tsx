@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { BaseImage } from '@/type';
 import 'lazysizes';
 import 'lazysizes/plugins/parent-fit/ls.parent-fit';
@@ -16,7 +15,6 @@ export default function ImageItem({ image }: ImageItemProps) {
   const placeholderUrl = new URL(`../assets/black.jpg`, import.meta.url).href;
   const url = new URL(`../assets/${image.name}.webp`, import.meta.url).href;
 
-  const [isLoaded, setIsLoaded] = useState(false);
   const copyImageToClipboard = async () => {
     const img = new Image();
     // img.crossOrigin = 'anonymous'; // Use this if the image is served from another domain
@@ -62,9 +60,6 @@ export default function ImageItem({ image }: ImageItemProps) {
           alt={image.name}
           src={placeholderUrl}
           className="lazyload"
-          onLoad={() => {
-            setIsLoaded(true);
-          }}
         />
         {/* {isLoaded ? '' : <Skeleton variant="rectangular" width={'100%'} height={200} />} */}
         <Box className="image-item-overlay">

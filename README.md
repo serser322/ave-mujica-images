@@ -23,6 +23,7 @@
 
 - [![Vite][Vite]][Vite-url]
 - [![React][React.js]][React-url]
+- [![Typescript][Typescript]][Typescript-url]
 - [![Mui][Mui]][Mui-url]
 - [![Cloudflare][Cloudflare]][Cloudflare-url]
 
@@ -36,6 +37,8 @@
 [Vite-url]: https://vitejs.dev/
 [React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
 [React-url]: https://reactjs.org/
+[Typescript]: https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white
+[Typescript-url]: https://www.typescriptlang.org/
 [Mui]: https://img.shields.io/badge/Material%20UI-007FFF?style=for-the-badge&logo=mui&logoColor=white
 [Mui-url]: https://mui.com/material-ui/getting-started/
 [Cloudflare]: https://img.shields.io/badge/Cloudflare-F38020?style=for-the-badge&logo=Cloudflare&logoColor=white
