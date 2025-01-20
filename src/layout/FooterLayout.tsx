@@ -7,12 +7,13 @@ export default function FooterLayout() {
     <footer>
       <Box>
         <GitHubButton
-          href="https://github.com/serser322"
-          data-color-scheme="no-preference: dark; light: dark_dimmed; dark: dark_dimmed;"
+          href="https://github.com/buttons/github-buttons"
+          data-color-scheme="no-preference: light; light: dark_high_contrast; dark: dark_dimmed;"
+          data-icon="octicon-star"
           data-size="large"
-          aria-label="Follow @serser322 on GitHub"
+          aria-label="Star buttons/github-buttons on GitHub"
         >
-          @serser322
+          Star
         </GitHubButton>
       </Box>
       <Box
