@@ -25,7 +25,7 @@ export default function FooterLayout() {
       >
         <Box>版本：v1.0.0</Box>
 
-        <Box>更新日期：2025/01/18</Box>
+        <Box>更新日期：{BUILD_DATE}</Box>
       </Box>
     </footer>
   );

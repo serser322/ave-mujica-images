@@ -4,7 +4,7 @@
 <small>就將一切 <del>對話訊息</del> 委身於Ave Mujica吧！</small>
 <br />
 <br/>
-<a href=""><strong>前往Ave Mujica 截圖搜尋器 »</strong></a>
+<a href="https://ave-mujica-images.pages.dev/"><strong>前往Ave Mujica 截圖搜尋器 »</strong></a>
 </div>
 <div align="center">
 <br/>
