@@ -7,11 +7,11 @@ export default function FooterLayout() {
     <footer>
       <Box>
         <GitHubButton
-          href="https://github.com/buttons/github-buttons"
-          data-color-scheme="no-preference: light; light: dark_high_contrast; dark: dark_dimmed;"
+          href="https://github.com/serser322/ave-mujica-images"
+          data-color-scheme="no-preference: light; light: light; dark: dark_dimmed;"
           data-icon="octicon-star"
           data-size="large"
-          aria-label="Star buttons/github-buttons on GitHub"
+          aria-label="Star serser322/ave-mujica-images on GitHub"
         >
           Star
         </GitHubButton>
