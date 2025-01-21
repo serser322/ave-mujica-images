@@ -12,6 +12,7 @@ export default defineConfig({
     },
   },
   define: {
-    BUILD_DATE: JSON.stringify(new Date().toISOString().split('T')[0]),
+    BUILD_DATE: JSON.stringify(new Date().toLocaleDateString().split('T')[0]),
+    APP_VERSION: JSON.stringify(process.env.npm_package_version),
   },
 });

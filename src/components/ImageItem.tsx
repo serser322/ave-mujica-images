@@ -61,7 +61,7 @@ export default function ImageItem({ image }: ImageItemProps) {
           src={placeholderUrl}
           className="lazyload"
         />
-        {/* {isLoaded ? '' : <Skeleton variant="rectangular" width={'100%'} height={200} />} */}
+
         <Box className="image-item-overlay">
           <Box className="buttons">
             <ImageIconButton title="複製" icon={<ContentCopy />} onClick={copyImageToClipboard} />
