@@ -2,25 +2,51 @@ header {
   width: 100%;
   padding: 1rem;
   color: #fff;
-  transform: translateX(-100%);
-  animation: HeaderComeIn ease 1.5s 0.5s forwards;
+  background: no-repeat 50% 39% / cover url('../assets/祝夜晚愉快.webp');
+  height: 130px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  opacity: 0;
+  animation: HeaderFadeIn ease 1.2s 0.2s forwards;
+
   //   animation: name duration timing-function delay iteration-count direction fill-mode;
 
-  .logo {
-    width: 250px;
-    margin-right: 0.5rem;
-    img {
-      width: 100%;
-    }
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.9) 0%,
+      rgba(0, 0, 0, 0.65) 35%,
+      rgba(0, 0, 0, 0.65) 65%,
+      rgba(0, 0, 0, 0.9) 100%
+    );
   }
+  .logo-wrapper {
+    transform: translateX(-113%);
+    animation: HeaderLogoComeIn ease 1.5s 0.6s forwards;
+    .logo {
+      width: 200px;
+      margin-right: 0.5rem;
+      img {
+        width: 100%;
+      }
+    }
 
-  .line-through {
-    text-decoration: line-through;
+    .line-through {
+      text-decoration: line-through;
+    }
   }
 }
 
 @media screen and (min-width: 768px) {
   header {
+    height: 150px;
     padding: 1rem 2rem;
   }
 }
@@ -28,12 +54,26 @@ header {
 @media screen and (min-width: 992px) {
   header {
     padding: 1rem 3rem;
+    .logo-wrapper {
+      .logo {
+        width: 250px;
+      }
+    }
   }
 }
 
-@keyframes HeaderComeIn {
+@keyframes HeaderFadeIn {
   from {
-    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes HeaderLogoComeIn {
+  from {
+    transform: translateX(-113%);
     opacity: 0;
   }
   to {

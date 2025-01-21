@@ -24,8 +24,7 @@ export default function FooterLayout() {
           px: { xs: 2, md: 4, lg: 6 },
         }}
       >
-        <Box>版本：v1.0.0</Box>
-
+        <Box>版本：{APP_VERSION}</Box>
         <Box>更新日期：{BUILD_DATE}</Box>
       </Box>
     </footer>
