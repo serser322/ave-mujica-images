@@ -8,7 +8,7 @@
 </div>
 <div align="center">
 <br/>
-<img src="https://imgur.com/KjItgM5.jpg" alt="example" width="400" height="auto">
+<img src="https://imgur.com/nWkHYuo.jpg" alt="example" width="400" height="auto">
 </div>
 
 ## 關於
