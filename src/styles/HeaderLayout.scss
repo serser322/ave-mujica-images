@@ -4,12 +4,10 @@ header {
   color: #fff;
   background: no-repeat 50% 39% / cover url('../assets/祝夜晚愉快.webp');
   height: 130px;
-  display: flex;
-  align-items: center;
   position: relative;
   opacity: 0;
   animation: HeaderFadeIn ease 1.2s 0.2s forwards;
-
+  overflow-x: hidden;
   //   animation: name duration timing-function delay iteration-count direction fill-mode;
 
   &::before {
@@ -26,6 +24,7 @@ header {
       rgba(0, 0, 0, 0.65) 65%,
       rgba(0, 0, 0, 0.9) 100%
     );
+    z-index: 0;
   }
   .logo-wrapper {
     transform: translateX(-113%);
@@ -42,12 +41,33 @@ header {
       text-decoration: line-through;
     }
   }
+  .update-info {
+    position: relative;
+    text-align: right;
+    margin-top: 5px;
+    padding-left: 4px;
+    font-size: 13px;
+    align-self: end;
+    color: #cecece;
+    z-index: 1;
+    transform: translateX(148%);
+    animation: HeaderInfoComeIn ease 1.5s 0.6s forwards;
+  }
 }
 
 @media screen and (min-width: 768px) {
   header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     height: 150px;
     padding: 1rem 2rem;
+
+    .update-info {
+      margin-top: 0px;
+      padding-left: 0px;
+      font-size: 14px;
+    }
   }
 }
 
@@ -74,6 +94,17 @@ header {
 @keyframes HeaderLogoComeIn {
   from {
     transform: translateX(-113%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes HeaderInfoComeIn {
+  from {
+    transform: translateX(148%);
     opacity: 0;
   }
   to {
