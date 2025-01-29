@@ -14,17 +14,14 @@ interface SearchBarProps {
 export default function SearchBar({ onSearch }: SearchBarProps) {
   const [keyword, setKeyword] = useState('');
 
-  const debouncedSearchAll = debounce(() => {
-    onSearch('');
+  const debouncedSearch = debounce((keyword: string) => {
+    onSearch(keyword);
   }, 200);
 
   const inputChangeHandler = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    if (e.target.value.trim() !== '') {
-      setKeyword(e.target.value.trim());
-    } else {
-      setKeyword(e.target.value.trim());
-      debouncedSearchAll();
-    }
+    const value = e.target.value.trim();
+    setKeyword(value);
+    debouncedSearch(value);
   };
   return (
     <>
