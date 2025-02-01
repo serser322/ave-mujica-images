@@ -15,12 +15,13 @@ interface ImageItemProps {
 export default function ImageItem({ image }: ImageItemProps) {
   const dispatch = useDispatch();
   const placeholderUrl = new URL(`../assets/black.jpg`, import.meta.url).href;
-  const url = new URL(`../assets/${image.name}.webp`, import.meta.url).href;
+  const webpUrl = new URL(`../assets/webp/${image.name}.webp`, import.meta.url).href;
+  const jpgUrl = new URL(`../assets/jpg/${image.name}.jpg`, import.meta.url).href;
 
   const copyImageToClipboard = async () => {
     const img = new Image();
     img.crossOrigin = 'anonymous'; // Use this if the image is served from another domain
-    img.src = url;
+    img.src = webpUrl;
     img.onload = async () => {
       const canvas = document.createElement('canvas');
       canvas.width = img.width;
@@ -49,8 +50,8 @@ export default function ImageItem({ image }: ImageItemProps) {
 
   const downloadImage = () => {
     const a = document.createElement('a');
-    a.href = url;
-    a.download = `${image.name}.png`;
+    a.href = jpgUrl;
+    a.download = `${image.name}.jpg`;
 
     document.body.appendChild(a);
     a.click();
@@ -58,46 +59,12 @@ export default function ImageItem({ image }: ImageItemProps) {
     document.body.removeChild(a);
   };
 
-  //   const downloadImage = () => {
-  //     const img = new Image();
-  //     img.crossOrigin = 'anonymous'; // Needed to avoid tainting the canvas
-  //     img.src = url;
-  //     img.onload = async () => {
-  //       const canvas = document.createElement('canvas');
-  //       canvas.width = img.width;
-  //       canvas.height = img.height;
-
-  //       const ctx = canvas.getContext('2d');
-  //       (ctx as CanvasRenderingContext2D).drawImage(img, 0, 0);
-
-  //       canvas.toBlob((blob) => {
-  //         const newImgUrl = URL.createObjectURL(blob as Blob);
-
-  //         const a = document.createElement('a');
-  //         a.href = newImgUrl;
-  //         a.download = `${image.name}.png`;
-  //         document.body.appendChild(a);
-  //         a.click();
-  //         // dispatch(
-  //         //   setNotification({
-  //         //     severity: 'success',
-  //         //     message: `已下載PNG圖檔`,
-  //         //   })
-  //         // );
-  //         document.body.removeChild(a);
-
-  //         // Clean up the object URL
-  //         URL.revokeObjectURL(newImgUrl);
-  //       }, 'image/png');
-  //     };
-  //   };
-
   return (
     <>
       <Box className="image-item-wrapper">
         <img
           style={{ width: '100%', height: 'auto' }}
-          data-src={url}
+          data-src={webpUrl}
           alt={image.name}
           src={placeholderUrl}
           className="lazyload"
