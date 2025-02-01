@@ -15,7 +15,7 @@ interface ImageItemProps {
 export default function ImageItem({ image }: ImageItemProps) {
   const dispatch = useDispatch();
   const placeholderUrl = new URL(`../assets/black.jpg`, import.meta.url).href;
-  const url = new URL(`../assets/${image.name}.webp`, import.meta.url).href;
+  const url = new URL(`../assets/webp/${image.name}.webp`, import.meta.url).href;
 
   const copyImageToClipboard = async () => {
     const img = new Image();
