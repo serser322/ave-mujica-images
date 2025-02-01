@@ -1,7 +1,7 @@
 import { Box, createTheme, ThemeProvider } from '@mui/material';
 import ContentLayout from './layout/ContentLayout';
 import HeaderLayout from './layout/HeaderLayout';
-import HomePage from './pages/HomePage';
+import HomePage from './pages/Home/HomePage';
 import FooterLayout from './layout/FooterLayout';
 
 const theme = createTheme({
