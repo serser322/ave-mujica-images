@@ -6,23 +6,40 @@ import ImageItem from '@/components/ImageItem';
 import ToTopButton from '@/components/ToTopButton';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/store/store';
+// import { latestEpisodeSelector } from '@/layout/contentLayoutSlice';
+import RangeSelectBar from '@/components/RangeSelectBar';
 
 export default function HomePage() {
   const defaultImageList = useSelector((state: RootState) => state.contentLayout.defaultImageList);
+  //   const [originalImageList, setOriginalImageList] = useState<BaseImage[]>(defaultImageList);
   const [imageList, setImageList] = useState<BaseImage[]>(defaultImageList);
 
+  const rangeChangeHandler = (episodeNum: number) => {
+    if (episodeNum === 0) {
+      setImageList(defaultImageList);
+    } else {
+      const filteredImageList = defaultImageList.filter((item) => item.episode === episodeNum);
+      setImageList(filteredImageList);
+    }
+  };
   const searchHandler = (keyword: string) => {
     const filteredImageList = defaultImageList.filter((item) => item.name.includes(keyword));
     setImageList(filteredImageList);
   };
 
   useEffect(() => {
-    setImageList(defaultImageList);
+    // setImageList(defaultImageList);
+    // setInitialImageList();
   }, []);
   return (
     <>
-      <Box>
-        <SearchBar onSearch={searchHandler} />
+      <Box sx={{ display: 'flex', gap: 2, my: 2 }}>
+        <Box sx={{ flex: { xs: 2, lg: 3, xl: 4 } }}>
+          <SearchBar onSearch={searchHandler} />
+        </Box>
+        <Box sx={{ flex: 1 }}>
+          <RangeSelectBar onSelectChange={rangeChangeHandler} />
+        </Box>
       </Box>
       {/* <Box sx={{ mb: 1, color: '#e6e6e6' }}>搜尋總數：{imageList.length}</Box> */}
       <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>

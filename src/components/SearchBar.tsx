@@ -25,7 +25,7 @@ export default function SearchBar({ onSearch }: SearchBarProps) {
   };
   return (
     <>
-      <Box className="search-bar" sx={{ display: 'flex', my: 2 }}>
+      <Box className="search-bar" sx={{ display: 'flex' }}>
         <TextField
           variant="outlined"
           color="primary"

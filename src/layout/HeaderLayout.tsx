@@ -1,9 +1,13 @@
 import { Box } from '@mui/material';
 import '@/styles/HeaderLayout.scss';
 import { ImageSearch } from '@mui/icons-material';
+import { useSelector } from 'react-redux';
+import { latestEpisodeSelector } from './contentLayoutSlice';
 
 export default function HeaderLayout() {
   const logoUrl = new URL(`../assets/logo.png`, import.meta.url).href;
+
+  const latestEpisode = useSelector(latestEpisodeSelector);
   return (
     <>
       <header>
@@ -20,7 +24,7 @@ export default function HeaderLayout() {
             就將一切<span className="line-through">對話訊息</span>委身於Ave Mujica吧！
           </Box>
         </Box>
-        <Box className="update-info">最新集數: 第5集</Box>
+        <Box className="update-info">最新集數: 第{latestEpisode}集</Box>
       </header>
     </>
   );

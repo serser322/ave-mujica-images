@@ -1,0 +1,16 @@
+.range-select-bar {
+  opacity: 0;
+  transform: translateX(20px);
+  animation: RangeSelectBarComeIn ease 1s 0.3s forwards;
+}
+
+@keyframes RangeSelectBarComeIn {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
