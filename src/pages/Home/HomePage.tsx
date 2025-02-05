@@ -11,6 +11,8 @@ import RangeSelectBar from '@/components/RangeSelectBar';
 
 export default function HomePage() {
   const defaultImageList = useSelector((state: RootState) => state.contentLayout.defaultImageList);
+  const keyword = useSelector((state: RootState) => state.contentLayout.keyword);
+  const episode = useSelector((state: RootState) => state.contentLayout.episode);
   //   const [originalImageList, setOriginalImageList] = useState<BaseImage[]>(defaultImageList);
   const [imageList, setImageList] = useState<BaseImage[]>(defaultImageList);
 
@@ -27,18 +29,38 @@ export default function HomePage() {
     setImageList(filteredImageList);
   };
 
+  const searchImages = () => {
+    if (keyword === '' && episode === 0) {
+      setImageList(defaultImageList);
+      return;
+    }
+
+    if (episode === 0) {
+      const filteredImageList = defaultImageList.filter((item) => item.name.includes(keyword));
+      setImageList(filteredImageList);
+      return;
+    }
+
+    const filteredImageList = defaultImageList.filter(
+      (item) => item.name.includes(keyword) && item.episode === episode
+    );
+    setImageList(filteredImageList);
+  };
+
   useEffect(() => {
     // setImageList(defaultImageList);
     // setInitialImageList();
-  }, []);
+    searchImages();
+  }, [keyword, episode]);
   return (
     <>
       <Box sx={{ display: 'flex', gap: 2, my: 2 }}>
         <Box sx={{ flex: { xs: 2, lg: 3, xl: 4 } }}>
-          <SearchBar onSearch={searchHandler} />
+          <SearchBar />
         </Box>
         <Box sx={{ flex: 1 }}>
-          <RangeSelectBar onSelectChange={rangeChangeHandler} />
+          {/* <RangeSelectBar onSelectChange={rangeChangeHandler} /> */}
+          <RangeSelectBar />
         </Box>
       </Box>
       {/* <Box sx={{ mb: 1, color: '#e6e6e6' }}>搜尋總數：{imageList.length}</Box> */}
