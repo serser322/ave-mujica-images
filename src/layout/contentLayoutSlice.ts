@@ -8,6 +8,7 @@ export const contentLayoutSlice = createSlice({
     notification: { severity: 'success', message: '' },
     keyword: '',
     episode: 0,
+    order: 'oldest',
     defaultImageList: [
       { name: '需不需要我把她叫醒', episode: 1 },
       { name: '就讓我們開始吧', episode: 1 },
@@ -359,14 +360,28 @@ export const contentLayoutSlice = createSlice({
     setEpisode: (state, action) => {
       state.episode = action.payload;
     },
+    setOrder: (state, action) => {
+      state.order = action.payload;
+    },
+    setDefaultImageList: (state, action) => {
+      state.defaultImageList = action.payload;
+    },
   },
 });
 
 export const latestEpisodeSelector = createSelector(
   (state: RootState) => state.contentLayout.defaultImageList,
-  (defaultImageList) => defaultImageList[defaultImageList.length - 1].episode
+  (state: RootState) => state.contentLayout.order,
+  (defaultImageList, order) => {
+    if (order === 'oldest') {
+      return defaultImageList[defaultImageList.length - 1].episode;
+    } else {
+      return defaultImageList[0].episode;
+    }
+  }
 );
 
-export const { setNotificationOpen, setNotification, setKeyword, setEpisode } = contentLayoutSlice.actions;
+export const { setNotificationOpen, setNotification, setKeyword, setEpisode, setOrder, setDefaultImageList } =
+  contentLayoutSlice.actions;
 
 export default contentLayoutSlice.reducer;
