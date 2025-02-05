@@ -3,19 +3,13 @@ import { Slide, Snackbar, Alert, AlertColor } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@/store/store';
 import { setNotificationOpen, setNotification } from '@/layout/contentLayoutSlice';
-// import { useAppContext } from '../provider/contexts';
-// import { defaultNotificationValue } from '../types';
 
 function NotificationAlert() {
   const dispatch = useDispatch();
   const isNotificationOpen = useSelector((store: RootState) => store.contentLayout.isNotificationOpen);
   const notification = useSelector((store: RootState) => store.contentLayout.notification);
-  //   const [isNotificationOpen, setIsNotificationOpen] = useState(false);
-
-  //   const { notification, setNotification } = useAppContext();
 
   const closeNotificationHandler = () => {
-    // setIsNotificationOpen(false);
     dispatch(setNotificationOpen(false));
     setTimeout(() => {
       setNotification({ severity: 'success', message: '' });
