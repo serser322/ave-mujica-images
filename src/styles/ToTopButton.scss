@@ -1,0 +1,13 @@
+.to-top-button {
+  opacity: 0;
+  animation: ToTopButtonComeInAnimation ease 1s 0.3s forwards;
+}
+
+@keyframes ToTopButtonComeInAnimation {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

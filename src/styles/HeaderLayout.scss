@@ -7,7 +7,7 @@ header {
   position: relative;
   opacity: 0;
   animation: HeaderFadeIn ease 1.2s 0.2s forwards;
-  overflow-x: hidden;
+  overflow: hidden;
   //   animation: name duration timing-function delay iteration-count direction fill-mode;
 
   &::before {
@@ -25,6 +25,7 @@ header {
       rgba(0, 0, 0, 0.9) 100%
     );
     z-index: 0;
+    overflow: hidden;
   }
   .logo-wrapper {
     transform: translateX(-113%);
