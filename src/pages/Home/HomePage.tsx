@@ -7,7 +7,8 @@ import ToTopButton from '@/components/ToTopButton';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/store/store';
 import RangeSelectBar from '@/components/RangeSelectBar';
-import { OrderRadioGroup } from '@/components/OrderRadioGroup';
+import '@/styles/HomePage.scss';
+// import { OrderRadioGroup } from '@/components/OrderRadioGroup';
 
 export default function HomePage() {
   const defaultImageList = useSelector((state: RootState) => state.contentLayout.defaultImageList);
@@ -38,18 +39,20 @@ export default function HomePage() {
   }, [keyword, episode]);
   return (
     <>
-      <Box sx={{ display: 'flex', gap: 2, mt: 2, mb: 1 }}>
+      <Box className="come-in-animation" sx={{ display: 'flex', gap: 2, mt: 2, mb: 1 }}>
         <Box sx={{ flex: { xs: 2, lg: 3, xl: 4 } }}>
           <SearchBar />
         </Box>
         <Box sx={{ flex: 1 }}>
           <RangeSelectBar />
         </Box>
-        <Box>
+        {/* <Box>
           <OrderRadioGroup />
-        </Box>
+        </Box> */}
       </Box>
-      <Box sx={{ ml: 1.5, mb: 1, color: '#dadada', fontSize: 12 }}>相關結果：{imageList.length} 張圖</Box>
+      <Box className="come-in-animation" sx={{ ml: 1.5, mb: 1, color: '#dadada', fontSize: 12 }}>
+        相關結果：{imageList.length} 張圖
+      </Box>
       <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
         {imageList.length === 0 && <Box sx={{ mt: 2, color: '#e6e6e6' }}>查無截圖 QQ</Box>}
         {imageList.map((image) => (

@@ -7,7 +7,6 @@ import InputAdornment from '@mui/material/InputAdornment';
 import SearchIcon from '@mui/icons-material/Search';
 import Box from '@mui/material/Box';
 import { setKeyword } from '@/layout/contentLayoutSlice';
-import '@/styles/SearchBar.scss';
 
 export default function SearchBar() {
   const dispatch = useDispatch();
@@ -24,7 +23,7 @@ export default function SearchBar() {
   };
   return (
     <>
-      <Box className="search-bar" sx={{ display: 'flex' }}>
+      <Box sx={{ display: 'flex' }}>
         <TextField
           variant="outlined"
           color="primary"

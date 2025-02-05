@@ -1,13 +1,11 @@
 import { Box } from '@mui/material';
 import '@/styles/HeaderLayout.scss';
 import { ImageSearch } from '@mui/icons-material';
-import { useSelector } from 'react-redux';
-import { latestEpisodeSelector } from './contentLayoutSlice';
+import { latestEpisode } from './contentLayoutSlice';
 
 export default function HeaderLayout() {
   const logoUrl = new URL(`../assets/logo.png`, import.meta.url).href;
 
-  const latestEpisode = useSelector(latestEpisodeSelector);
   return (
     <>
       <header>

@@ -1,10 +1,10 @@
-.range-select-bar {
+.come-in-animation {
   opacity: 0;
   transform: translateX(20px);
-  animation: RangeSelectBarComeIn ease 1s 0.3s forwards;
+  animation: ComeInAnimation ease 1s 0.3s forwards;
 }
 
-@keyframes RangeSelectBarComeIn {
+@keyframes ComeInAnimation {
   from {
     transform: translateY(20px);
     opacity: 0;
