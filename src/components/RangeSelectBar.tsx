@@ -17,11 +17,11 @@ export default function RangeSelectBar() {
   return (
     <>
       <FormControl fullWidth>
-        <InputLabel id="range-select-label">搜尋範圍</InputLabel>
+        <InputLabel id="range-select-label">查看特定集數</InputLabel>
         <Select
           labelId="range-select-label"
           value={episode}
-          label="搜尋範圍"
+          label="查看特定集數"
           onChange={selectChangeHandler}
           renderValue={(value) => (
             <Box sx={{ display: 'flex', alignItems: 'center' }}>
@@ -36,6 +36,7 @@ export default function RangeSelectBar() {
             </MenuItem>
           ))}
         </Select>
+        {/* <Box sx={{ mt: 0.5, textAlign: 'right', fontSize: 11, fontWeight: 600, color: '#e0e0e0' }}>▲不一定要關鍵字</Box> */}
       </FormControl>
     </>
   );
