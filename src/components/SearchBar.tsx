@@ -14,7 +14,7 @@ export default function SearchBar() {
 
   const debouncedSetKeyword = debounce((keyword: string) => {
     dispatch(setKeyword(keyword));
-  }, 200);
+  }, 270);
 
   const inputChangeHandler = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const value = e.target.value.trim();
