@@ -1,3 +1,24 @@
+.search-area {
+  position: sticky;
+  top: 5px;
+  right: 0;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin: 2rem auto 1rem;
+  z-index: 2;
+  //   background-color: rgba(66, 66, 66, 0.8);
+  background-color: transparent;
+  backdrop-filter: blur(5px);
+  height: 56px;
+  transition: all 0.3s ease-in-out;
+
+  &.background {
+    height: 5rem;
+    background-color: rgba(66, 66, 66, 0.8);
+  }
+}
+
 .come-in-animation {
   opacity: 0;
   transform: translateY(20px);

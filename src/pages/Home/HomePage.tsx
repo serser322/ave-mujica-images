@@ -11,6 +11,7 @@ import '@/styles/HomePage.scss';
 // import { OrderRadioGroup } from '@/components/OrderRadioGroup';
 
 export default function HomePage() {
+  const [isScrolled, setIsScrolled] = useState(false);
   const defaultImageList = useSelector((state: RootState) => state.contentLayout.defaultImageList);
   const keyword = useSelector((state: RootState) => state.contentLayout.keyword);
   const episode = useSelector((state: RootState) => state.contentLayout.episode);
@@ -34,12 +35,24 @@ export default function HomePage() {
     setImageList(filteredImageList);
   };
 
+  const handleScroll = () => {
+    const scrollPosition = window.scrollY;
+    setIsScrolled(scrollPosition > 100);
+  };
+
   useEffect(() => {
     searchImages();
   }, [keyword, episode]);
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
   return (
     <>
-      <Box className="come-in-animation" sx={{ display: 'flex', gap: 2, mt: 2, mb: 1 }}>
+      <Box className={`search-area come-in-animation ${isScrolled ? 'background' : ''}`}>
         <Box sx={{ flex: { xs: 2, lg: 3, xl: 4 } }}>
           <SearchBar />
         </Box>

@@ -39,9 +39,9 @@ export default function ToTopButton() {
         className="to-top-button"
         sx={{
           position: 'fixed',
-          top: { xs: 20, lg: 'auto', xl: 'auto' },
-          right: { xs: '50%', lg: 55, xl: 65 },
-          bottom: { xs: 'auto', lg: 30, xl: 30 },
+          //   top: { xs: 0, lg: 'auto', xl: 'auto' },
+          right: { xs: '15%', lg: 55, xl: 65 },
+          bottom: { xs: 30, lg: 30, xl: 30 },
           transform: { xs: 'translateX(50%)' },
           backgroundColor: 'rgba(255, 255, 255, 0.5)',
         }}
