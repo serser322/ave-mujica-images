@@ -1,12 +1,10 @@
 import { Box } from '@mui/material';
 import SearchBar from '@/components/SearchBar';
-import ImageList from '@/components/ImageList';
-import ToTopButton from '@/components/ToTopButton';
 import RangeSelectBar from '@/components/RangeSelectBar';
-import '@/styles/HomePage.scss';
-// import { OrderRadioGroup } from '@/components/OrderRadioGroup';
+import '@/styles/SearchPanel.scss';
+// import OrderRadioGroup  from '@/components/OrderRadioGroup';
 
-export default function HomePage() {
+export default function SearchPanel() {
   return (
     <>
       <Box className="search-area come-in-animation">
@@ -19,10 +17,6 @@ export default function HomePage() {
         {/* <Box>
           <OrderRadioGroup />
         </Box> */}
-      </Box>
-      <ImageList />
-      <Box>
-        <ToTopButton />
       </Box>
     </>
   );

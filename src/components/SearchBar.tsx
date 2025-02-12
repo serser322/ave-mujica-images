@@ -14,7 +14,7 @@ export default function SearchBar() {
 
   const debouncedSetKeyword = debounce((keyword: string) => {
     dispatch(setKeyword(keyword));
-  }, 270);
+  }, 250);
 
   const inputChangeHandler = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const value = e.target.value.trim();
@@ -23,8 +23,9 @@ export default function SearchBar() {
   };
   return (
     <>
-      <Box sx={{ display: 'flex' }}>
+      <Box sx={{ display: 'flex', backgroundColor: 'rgba(66, 66, 66, 0.7)' }}>
         <TextField
+          label="關鍵字搜尋"
           variant="outlined"
           color="primary"
           value={inputValue}
