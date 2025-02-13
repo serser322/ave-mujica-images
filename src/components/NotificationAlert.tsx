@@ -26,7 +26,7 @@ function NotificationAlert() {
       <Snackbar
         open={isNotificationOpen}
         autoHideDuration={2000}
-        anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
         TransitionComponent={Slide}
         onClose={closeNotificationHandler}
         onClick={closeNotificationHandler}
