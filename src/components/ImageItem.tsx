@@ -3,7 +3,7 @@ import 'lazysizes';
 import 'lazysizes/plugins/parent-fit/ls.parent-fit';
 import '@/styles/ImageItem.scss';
 import Box from '@mui/material/Box';
-import { ContentCopy, Download } from '@mui/icons-material';
+import { ContentCopy, Download, InsertLink } from '@mui/icons-material';
 import ImageIconButton from './ImageIconButton';
 import { useDispatch } from 'react-redux';
 import { setNotification } from '@/layout/contentLayoutSlice';
@@ -59,6 +59,20 @@ export default function ImageItem({ image }: ImageItemProps) {
     document.body.removeChild(a);
   };
 
+  const copyLinkToClipboard = async () => {
+    try {
+      await navigator.clipboard.writeText(jpgUrl);
+      dispatch(
+        setNotification({
+          severity: 'success',
+          message: `已複製圖片連結`,
+        })
+      );
+    } catch (error) {
+      console.error('Failed to copy link to clipboard', error);
+    }
+  };
+
   return (
     <>
       <Box className="image-item-wrapper">
@@ -72,8 +86,9 @@ export default function ImageItem({ image }: ImageItemProps) {
 
         <Box className="image-item-overlay">
           <Box className="buttons">
-            <ImageIconButton title="複製" icon={<ContentCopy />} onClick={copyImageToClipboard} />
-            <ImageIconButton title="下載" icon={<Download />} onClick={downloadImage} />
+            <ImageIconButton title="複製圖片" icon={<ContentCopy />} onClick={copyImageToClipboard} />
+            <ImageIconButton title="下載JPG檔" icon={<Download />} onClick={downloadImage} />
+            <ImageIconButton title="圖片連結複製" icon={<InsertLink />} onClick={copyLinkToClipboard} />
           </Box>
           <Box className="image-item-name">{image.name}</Box>
         </Box>

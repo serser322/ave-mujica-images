@@ -16,7 +16,7 @@ export default function RangeSelectBar() {
 
   return (
     <>
-      <FormControl fullWidth>
+      <FormControl fullWidth sx={{ backgroundColor: 'rgba(66, 66, 66, 0.7)' }}>
         <InputLabel id="range-select-label">查看特定集數</InputLabel>
         <Select
           labelId="range-select-label"
