@@ -1,10 +1,10 @@
 .search-area {
   position: sticky;
-  top: 10px;
+  top: 15px;
   right: 0;
   display: flex;
   align-items: center;
-  gap: 2rem;
+  gap: 1rem;
   margin: 2em auto 1.1rem;
   z-index: 2;
   backdrop-filter: blur(5px);
@@ -26,5 +26,11 @@
   to {
     transform: translateY(0);
     opacity: 1;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .search-area {
+    gap: 2rem;
   }
 }
