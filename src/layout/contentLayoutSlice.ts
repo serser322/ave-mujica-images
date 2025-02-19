@@ -441,6 +441,7 @@ const initialState = {
     { name: '討厭啦', episode: 6 },
     { name: '我問妳，妳知道這影片嗎', episode: 6 },
     { name: '是我害睦壞掉的', episode: 6 },
+    { name: '[無詞]小祥靠牆驚訝問號表情', episode: 6 },
     { name: '不太妙吧', episode: 6 },
     { name: '我真的不懂妳們在說什麼', episode: 6 },
     { name: '那些我根本就不在乎', episode: 6 },
