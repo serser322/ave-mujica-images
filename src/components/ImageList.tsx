@@ -9,6 +9,7 @@ export default function ImageList() {
   const defaultImageList = useSelector((state: RootState) => state.contentLayout.defaultImageList);
   const keyword = useSelector((state: RootState) => state.contentLayout.keyword);
   const episode = useSelector((state: RootState) => state.contentLayout.episode);
+  const order = useSelector((state: RootState) => state.contentLayout.order);
   const [imageList, setImageList] = useState<BaseImage[]>(defaultImageList);
 
   const searchImages = () => {
@@ -31,7 +32,7 @@ export default function ImageList() {
 
   useEffect(() => {
     searchImages();
-  }, [keyword, episode]);
+  }, [keyword, episode, order]);
   return (
     <>
       <Box className="come-in-animation" sx={{ ml: 1.5, mb: 1, color: '#dadada', fontSize: 12 }}>
