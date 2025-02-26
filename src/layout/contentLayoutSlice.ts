@@ -689,7 +689,7 @@ const initialState = {
 };
 
 export const latestEpisode = initialState.defaultImageList[initialState.defaultImageList.length - 1].episode;
-export const revertedDefaultImageList = initialState.defaultImageList.toSorted((a, b) => b.episode - a.episode);
+// export const revertedDefaultImageList = initialState.defaultImageList.toSorted((a, b) => b.episode - a.episode);
 
 export const contentLayoutSlice = createSlice({
   name: 'contentLayout',

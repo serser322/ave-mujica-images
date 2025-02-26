@@ -1,74 +1,65 @@
 import { ChangeEvent, useEffect } from 'react';
-import {
-  FormControl,
-  FormControlLabel,
-  FormLabel,
-  Radio,
-  RadioGroup,
-  ToggleButton,
-  ToggleButtonGroup,
-} from '@mui/material';
+import { ToggleButton, ToggleButtonGroup, Tooltip, useMediaQuery } from '@mui/material';
 import { RootState } from '@/store/store';
 import { useDispatch, useSelector } from 'react-redux';
-import { latestEpisode, setOrder, setDefaultImageList } from '@/layout/contentLayoutSlice';
-import { BaseImage } from '@/type';
+import { setOrder, setDefaultImageList } from '@/layout/contentLayoutSlice';
 import { Sort } from '@mui/icons-material';
-import { revertedDefaultImageList } from '@/layout/contentLayoutSlice';
+// import { revertedDefaultImageList } from '@/layout/contentLayoutSlice';
 
 export function SortToggleButtons() {
   const dispatch = useDispatch();
   const order = useSelector((state: RootState) => state.contentLayout.order);
   const defaultImageList = useSelector((state: RootState) => state.contentLayout.defaultImageList);
+  const matches = useMediaQuery('(min-width:576px)');
   const sortChangeHandler = (event: ChangeEvent<unknown>, value: string) => {
+    if (!value) return;
     dispatch(setOrder(value));
-    console.log(value);
   };
 
   useEffect(() => {
-    console.log('useEffect', order);
+    const imageList = [...defaultImageList];
     if (order === 'oldest') {
       //   localStorage.setItem('order', 'oldest');
-      //   defaultImageList.sort((a, b) => a.episode - b.episode);
-      //   const newList = [] as BaseImage[];
-      //   for (let i = 1; i <= latestEpisode; i++) {
-      //     defaultImageList.forEach((item) => {
-      //       if (item.episode === i) {
-      //         newList.push(item);
-      //       }
-      //     });
-      //   }
-      dispatch(setDefaultImageList(defaultImageList));
+      imageList.sort((a, b) => a.episode - b.episode);
+
+      dispatch(setDefaultImageList(imageList));
     } else {
-      //   const newList = [] as BaseImage[];
-      //   for (let i = latestEpisode; i >= 1; i--) {
-      //     defaultImageList.forEach((item) => {
-      //       if (item.episode === i) {
-      //         newList.push(item);
-      //       }
-      //     });
-      //   }
-      dispatch(setDefaultImageList(revertedDefaultImageList));
+      imageList.sort((a, b) => b.episode - a.episode);
+      dispatch(setDefaultImageList(imageList));
     }
   }, [order]);
   return (
     <>
-      <ToggleButtonGroup value={order} exclusive onChange={sortChangeHandler}>
-        <ToggleButton value="oldest" aria-label="oldest first">
-          <Sort sx={{ transform: 'scaleY(-1)' }} />
-        </ToggleButton>
-        <ToggleButton value="newest" aria-label="oldest first">
-          <Sort />
-        </ToggleButton>
-      </ToggleButtonGroup>
-      {/* <FormControl sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
-        <FormLabel id="order-radio-group-label" sx={{ mr: 2 }}>
-          排序方式
-        </FormLabel>
-        <RadioGroup row aria-labelledby="order-radio-group-label" onChange={orderRadioChangeHandler}>
-          <FormControlLabel value="oldest" control={<Radio />} label="首集" />
-          <FormControlLabel value="newest" control={<Radio />} label="最新" />
-        </RadioGroup>
-      </FormControl> */}
+      {!matches ? (
+        <ToggleButtonGroup value={order} color="primary" exclusive onChange={sortChangeHandler}>
+          {order === 'oldest' ? (
+            <Tooltip arrow title="最新優先 " placement="bottom">
+              <ToggleButton value="newest" aria-label="newest first">
+                <Sort />
+              </ToggleButton>
+            </Tooltip>
+          ) : (
+            <Tooltip arrow title="首集優先" placement="bottom">
+              <ToggleButton value="oldest" aria-label="oldest first">
+                <Sort sx={{ transform: 'scaleY(-1)' }} />
+              </ToggleButton>
+            </Tooltip>
+          )}
+        </ToggleButtonGroup>
+      ) : (
+        <ToggleButtonGroup value={order} color="primary" exclusive onChange={sortChangeHandler}>
+          <Tooltip arrow title="首集優先" placement="bottom">
+            <ToggleButton value="oldest" aria-label="oldest first">
+              <Sort sx={{ transform: 'scaleY(-1)' }} />
+            </ToggleButton>
+          </Tooltip>
+          <Tooltip arrow title="最新優先 " placement="bottom">
+            <ToggleButton value="newest" aria-label="newest first">
+              <Sort />
+            </ToggleButton>
+          </Tooltip>
+        </ToggleButtonGroup>
+      )}
     </>
   );
 }
