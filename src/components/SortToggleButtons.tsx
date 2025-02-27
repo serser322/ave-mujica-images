@@ -11,7 +11,7 @@ export function SortToggleButtons() {
   const order = useSelector((state: RootState) => state.contentLayout.order);
   const defaultImageList = useSelector((state: RootState) => state.contentLayout.defaultImageList);
   const matches = useMediaQuery('(min-width:576px)');
-  const sortChangeHandler = (event: ChangeEvent<unknown>, value: string) => {
+  const sortChangeHandler = (_event: ChangeEvent<unknown>, value: string) => {
     if (!value) return;
     dispatch(setOrder(value));
   };
