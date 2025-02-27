@@ -31,7 +31,7 @@ export default function ImageList() {
 
   useEffect(() => {
     searchImages();
-  }, [keyword, episode]);
+  }, [keyword, episode, defaultImageList]);
   return (
     <>
       <Box className="come-in-animation" sx={{ ml: 1.5, mb: 1, color: '#dadada', fontSize: 12 }}>

@@ -4,7 +4,7 @@ import ImageList from '@/components/ImageList';
 import ToTopButton from '@/components/ToTopButton';
 import RangeSelectBar from '@/components/RangeSelectBar';
 import '@/styles/HomePage.scss';
-// import { OrderRadioGroup } from '@/components/OrderRadioGroup';
+import { SortToggleButtons } from '@/components/SortToggleButtons';
 
 export default function HomePage() {
   return (
@@ -16,9 +16,9 @@ export default function HomePage() {
         <Box sx={{ flex: 1 }}>
           <RangeSelectBar />
         </Box>
-        {/* <Box>
-          <OrderRadioGroup />
-        </Box> */}
+        <Box sx={{ flex: 0.5 }}>
+          <SortToggleButtons />
+        </Box>
       </Box>
       <ImageList />
       <Box>
