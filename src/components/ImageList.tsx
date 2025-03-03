@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, Suspense, lazy } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/store/store';
-import { Box } from '@mui/material';
-import ImageItem from './ImageItem';
+import { Box, CircularProgress } from '@mui/material';
+// import ImageItem from './ImageItem';
 import { BaseImage } from '@/type';
 
 export default function ImageList() {
@@ -11,6 +11,7 @@ export default function ImageList() {
   const episode = useSelector((state: RootState) => state.contentLayout.episode);
   const [imageList, setImageList] = useState<BaseImage[]>(defaultImageList);
 
+  const LazyImageItem = lazy(() => import('./ImageItem'));
   const searchImages = () => {
     if (keyword === '' && episode === 0) {
       setImageList(defaultImageList);
@@ -39,9 +40,11 @@ export default function ImageList() {
       </Box>
       <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
         {imageList.length === 0 && <Box sx={{ mt: 2, color: '#e6e6e6' }}>查無截圖 QQ</Box>}
-        {imageList.map((image) => (
-          <ImageItem key={image.name} image={image} />
-        ))}
+        <Suspense fallback={<CircularProgress size="3rem" sx={{ mt: 4 }} />}>
+          {imageList.map((image) => (
+            <LazyImageItem key={image.name} image={image} />
+          ))}
+        </Suspense>
       </Box>
     </>
   );
