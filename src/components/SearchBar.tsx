@@ -13,6 +13,7 @@ export default function SearchBar() {
   const [inputValue, setInputValue] = useState<string>('');
 
   const debouncedSetKeyword = debounce((keyword: string) => {
+    keyword = keyword.toLowerCase().trim();
     dispatch(setKeyword(keyword));
   }, 250);
 

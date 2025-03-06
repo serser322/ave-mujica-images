@@ -19,13 +19,13 @@ export default function ImageList() {
     }
 
     if (episode === 0) {
-      const filteredImageList = defaultImageList.filter((item) => item.name.includes(keyword));
+      const filteredImageList = defaultImageList.filter((item) => item.name.toLowerCase().includes(keyword));
       setImageList(filteredImageList);
       return;
     }
 
     const filteredImageList = defaultImageList.filter(
-      (item) => item.name.includes(keyword) && item.episode === episode
+      (item) => item.name.toLowerCase().includes(keyword) && item.episode === episode
     );
     setImageList(filteredImageList);
   };
