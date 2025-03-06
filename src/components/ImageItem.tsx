@@ -14,7 +14,7 @@ interface ImageItemProps {
 
 export default function ImageItem({ image }: ImageItemProps) {
   const dispatch = useDispatch();
-  const placeholderUrl = new URL(`../assets/black.jpg`, import.meta.url).href;
+  const placeholderUrl = new URL(`../assets/black.webp`, import.meta.url).href;
   const webpUrl = new URL(`../assets/webp/${image.name}.webp`, import.meta.url).href;
   const jpgUrl = new URL(`../assets/jpg/${image.name}.jpg`, import.meta.url).href;
 
