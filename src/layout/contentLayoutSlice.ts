@@ -918,6 +918,7 @@ const initialState = {
     { name: '沒有被愛', episode: 10 },
     { name: '我也一樣', episode: 10 },
     { name: '來吧，你已經逃不掉了', episode: 10 },
+    { name: '將愈發軟弱的你幽禁', episode: 10 },
     { name: 'I want..', episode: 10 },
     { name: '為什麼.. You know..', episode: 10 },
     { name: 'I want you to know how much I need you so', episode: 10 },
