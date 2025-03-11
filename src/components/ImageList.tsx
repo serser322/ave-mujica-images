@@ -2,8 +2,12 @@ import { useEffect, useState, Suspense, lazy } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/store/store';
 import { Box, CircularProgress } from '@mui/material';
-// import ImageItem from './ImageItem';
+import ImageItem from './ImageItem';
 import { BaseImage } from '@/type';
+import { CellMeasurer, CellMeasurerCache, List, WindowScroller, AutoSizer } from 'react-virtualized';
+import 'react-virtualized/styles.css'; // only needs to be imported once
+import FooterLayout from '@/layout/FooterLayout';
+// import AutoSizer from 'react-virtualized-auto-sizer';
 
 export default function ImageList() {
   const defaultImageList = useSelector((state: RootState) => state.contentLayout.defaultImageList);
@@ -30,6 +34,27 @@ export default function ImageList() {
     setImageList(filteredImageList);
   };
 
+  const cache = new CellMeasurerCache({
+    fixedWidth: true,
+    defaultHeight: 200, // A reasonable default height
+  });
+
+  const renderRow = ({ index, key, style, parent }) => {
+    const itemsForRow = imageList.slice(index * 4, index * 4 + 4);
+
+    return (
+      <CellMeasurer cache={cache} columnIndex={0} key={key} parent={parent} rowIndex={index}>
+        <div style={{ ...style, display: 'flex', flexDirection: 'row', justifyContent: 'center' }}>
+          {itemsForRow.map((image, idx) => (
+            <div key={idx} style={{ width: '32%', margin: '0.5rem', display: 'flex', justifyContent: 'center' }}>
+              <ImageItem image={image} />
+            </div>
+          ))}
+        </div>
+      </CellMeasurer>
+    );
+  };
+
   useEffect(() => {
     searchImages();
   }, [keyword, episode, defaultImageList]);
@@ -38,14 +63,35 @@ export default function ImageList() {
       <Box className="come-in-animation" sx={{ ml: 1.5, mb: 1, color: '#dadada', fontSize: 12 }}>
         相關結果：{imageList.length} 張圖
       </Box>
-      <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
+      <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', height: '500px' }}>
         {imageList.length === 0 && <Box sx={{ mt: 2, color: '#e6e6e6' }}>查無截圖 QQ</Box>}
-        <Suspense fallback={<CircularProgress size="3rem" sx={{ mt: 4 }} />}>
+        {/* <Suspense fallback={<CircularProgress size="3rem" sx={{ mt: 4 }} />}>
           {imageList.map((image) => (
             <LazyImageItem key={image.name} image={image} />
           ))}
-        </Suspense>
+        </Suspense> */}
+        <Box sx={{ width: '100%', height: '100%' }}>
+          <WindowScroller>
+            {({ height, isScrolling, onChildScroll, scrollTop }) => (
+              <AutoSizer disableHeight>
+                {({ width }) => (
+                  <List
+                    autoHeight
+                    height={height}
+                    rowCount={Math.ceil(imageList.length / 4)}
+                    rowHeight={cache.rowHeight}
+                    rowRenderer={renderRow}
+                    width={width}
+                    scrollTop={scrollTop}
+                    erscanRowCount={5}
+                  />
+                )}
+              </AutoSizer>
+            )}
+          </WindowScroller>
+        </Box>
       </Box>
+      <FooterLayout />
     </>
   );
 }

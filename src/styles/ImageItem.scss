@@ -101,7 +101,7 @@
 
 @media screen and (min-width: 768px) {
   .image-item-wrapper {
-    width: 47%;
+    // width: 47%;
     margin: 0.5rem;
     &:hover {
       transform: scale(1.05);
@@ -111,13 +111,13 @@
 
 @media screen and (min-width: 992px) {
   .image-item-wrapper {
-    width: 31.3%;
+    // width: 31.3%;
   }
 }
 
 @media screen and (min-width: 1200px) {
   .image-item-wrapper {
-    width: 23.5%;
+    // width: 23.5%;
   }
 }
 
