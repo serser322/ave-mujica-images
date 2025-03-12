@@ -13,6 +13,7 @@ export default function ImageList() {
   const defaultImageList = useSelector((state: RootState) => state.contentLayout.defaultImageList);
   const keyword = useSelector((state: RootState) => state.contentLayout.keyword);
   const episode = useSelector((state: RootState) => state.contentLayout.episode);
+  const order = useSelector((state: RootState) => state.contentLayout.order);
   const [imageList, setImageList] = useState<BaseImage[]>(defaultImageList);
 
   const LazyImageItem = lazy(() => import('./ImageItem'));
@@ -46,7 +47,7 @@ export default function ImageList() {
       <CellMeasurer cache={cache} columnIndex={0} key={key} parent={parent} rowIndex={index}>
         <div style={{ ...style, display: 'flex', flexDirection: 'row', justifyContent: 'center' }}>
           {itemsForRow.map((image, idx) => (
-            <div key={idx} style={{ width: '32%', margin: '0.5rem', display: 'flex', justifyContent: 'center' }}>
+            <div key={image.name} style={{ width: '32%', margin: '0.5rem', display: 'flex', justifyContent: 'center' }}>
               <ImageItem image={image} />
             </div>
           ))}
@@ -57,7 +58,7 @@ export default function ImageList() {
 
   useEffect(() => {
     searchImages();
-  }, [keyword, episode, defaultImageList]);
+  }, [keyword, episode, order, defaultImageList]);
   return (
     <>
       <Box className="come-in-animation" sx={{ ml: 1.5, mb: 1, color: '#dadada', fontSize: 12 }}>
@@ -83,7 +84,8 @@ export default function ImageList() {
                     rowRenderer={renderRow}
                     width={width}
                     scrollTop={scrollTop}
-                    erscanRowCount={5}
+                    // estimatedRowSize={250 * 200}
+                    // erscanRowCount={5}
                   />
                 )}
               </AutoSizer>
