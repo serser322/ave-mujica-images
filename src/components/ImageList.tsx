@@ -1,4 +1,4 @@
-import { useEffect, useState, Suspense, lazy } from 'react';
+import { useEffect, useState, Suspense, lazy, CSSProperties } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/store/store';
 import { Box, CircularProgress } from '@mui/material';
@@ -8,6 +8,27 @@ import { CellMeasurer, CellMeasurerCache, List, WindowScroller, AutoSizer } from
 import 'react-virtualized/styles.css'; // only needs to be imported once
 import FooterLayout from '@/layout/FooterLayout';
 // import AutoSizer from 'react-virtualized-auto-sizer';
+
+interface WindowScrollerProps {
+  height: number;
+  scrollTop: number;
+}
+
+interface AutoSizerChildrenProps {
+  width: number;
+  height: number;
+}
+
+interface ListRowRendererProps {
+  index: number;
+  key: string;
+  parent: unknown;
+  style: CSSProperties;
+}
+
+type RenderRowProps = ListRowRendererProps & {
+  width: number;
+};
 
 export default function ImageList() {
   const defaultImageList = useSelector((state: RootState) => state.contentLayout.defaultImageList);
@@ -40,13 +61,15 @@ export default function ImageList() {
     defaultHeight: 200, // A reasonable default height
   });
 
-  const renderRow = ({ index, key, style, parent }) => {
-    const itemsForRow = imageList.slice(index * 4, index * 4 + 4);
+  const renderRow = ({ index, key, style, parent, width }: RenderRowProps) => {
+    const rowNum = width > 1200 ? 4 : width > 992 ? 3 : width > 768 ? 2 : 1;
+
+    const itemsForRow = imageList.slice(index * rowNum, index * rowNum + rowNum);
 
     return (
       <CellMeasurer cache={cache} columnIndex={0} key={key} parent={parent} rowIndex={index}>
         <div style={{ ...style, display: 'flex', flexDirection: 'row', justifyContent: 'center' }}>
-          {itemsForRow.map((image, idx) => (
+          {itemsForRow.map((image) => (
             <div key={image.name} style={{ width: '32%', margin: '0.5rem', display: 'flex', justifyContent: 'center' }}>
               <ImageItem image={image} />
             </div>
@@ -73,15 +96,17 @@ export default function ImageList() {
         </Suspense> */}
         <Box sx={{ width: '100%', height: '100%' }}>
           <WindowScroller>
-            {({ height, isScrolling, onChildScroll, scrollTop }) => (
+            {({ height, scrollTop }: WindowScrollerProps) => (
               <AutoSizer disableHeight>
-                {({ width }) => (
+                {({ width }: AutoSizerChildrenProps) => (
                   <List
                     autoHeight
                     height={height}
                     rowCount={Math.ceil(imageList.length / 4)}
                     rowHeight={cache.rowHeight}
-                    rowRenderer={renderRow}
+                    rowRenderer={({ index, key, parent, style }: ListRowRendererProps) =>
+                      renderRow({ index, key, parent, style, width })
+                    }
                     width={width}
                     scrollTop={scrollTop}
                     // estimatedRowSize={250 * 200}
