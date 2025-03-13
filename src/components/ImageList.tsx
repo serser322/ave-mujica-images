@@ -6,7 +6,7 @@ import ImageItem from './ImageItem';
 import { BaseImage } from '@/type';
 import { CellMeasurer, CellMeasurerCache, List, WindowScroller, AutoSizer } from 'react-virtualized';
 import 'react-virtualized/styles.css';
-import FooterLayout from '@/layout/FooterLayout';
+
 import '@/styles/ImageList.scss';
 
 interface WindowScrollerProps {
@@ -61,26 +61,32 @@ export default function ImageList() {
     defaultHeight: 200, // A reasonable default height
   });
 
-  const renderRow = ({ index, key, style, parent, width }: RenderRowProps) => {
-    const rowNum = width > 1200 ? 4 : width > 992 ? 3 : width > 768 ? 2 : 1;
-
-    const itemsForRow = imageList.slice(index * rowNum, index * rowNum + rowNum);
+  const renderRow = ({ index, key, style, parent }: RenderRowProps) => {
+    const columnCount = getColumnCount();
+    const itemsForRow = imageList.slice(index * columnCount, index * columnCount + columnCount);
 
     return (
       <CellMeasurer cache={cache} columnIndex={0} key={key} parent={parent} rowIndex={index}>
         <div className="image-item-row" style={{ ...style }}>
           {itemsForRow.map((image) => (
-            <div
-              key={image.name}
-              className="image-item"
-              //   style={{ width: '32%', margin: '0.5rem', display: 'flex', justifyContent: 'center' }}
-            >
+            <Box key={image.name} className="image-item">
               <ImageItem image={image} />
-            </div>
+            </Box>
           ))}
         </div>
       </CellMeasurer>
     );
+  };
+
+  const getRowCount = () => {
+    const columnCount = getColumnCount();
+    return Math.ceil(imageList.length / columnCount);
+  };
+
+  const getColumnCount = () => {
+    const viewportWidth = window.innerWidth;
+    const columnCount = viewportWidth > 1200 ? 4 : viewportWidth > 992 ? 3 : viewportWidth > 768 ? 2 : 1;
+    return columnCount;
   };
 
   useEffect(() => {
@@ -91,7 +97,7 @@ export default function ImageList() {
       <Box className="come-in-animation" sx={{ ml: 1.5, mb: 1, color: '#dadada', fontSize: 12 }}>
         相關結果：{imageList.length} 張圖
       </Box>
-      <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', height: '500px' }}>
+      <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
         {imageList.length === 0 && <Box sx={{ mt: 2, color: '#e6e6e6' }}>查無截圖 QQ</Box>}
         {/* <Suspense fallback={<CircularProgress size="3rem" sx={{ mt: 4 }} />}>
           {imageList.map((image) => (
@@ -101,28 +107,30 @@ export default function ImageList() {
         <Box sx={{ width: '100%', height: '100%' }}>
           <WindowScroller>
             {({ height, scrollTop }: WindowScrollerProps) => (
-              <AutoSizer disableHeight>
-                {({ width }: AutoSizerChildrenProps) => (
-                  <List
-                    autoHeight
-                    height={height}
-                    rowCount={Math.ceil(imageList.length / 4)}
-                    rowHeight={cache.rowHeight}
-                    rowRenderer={({ index, key, parent, style }: ListRowRendererProps) =>
-                      renderRow({ index, key, parent, style, width })
-                    }
-                    width={width}
-                    scrollTop={scrollTop}
-                    // estimatedRowSize={250 * 200}
-                    // erscanRowCount={5}
-                  />
-                )}
-              </AutoSizer>
+              <>
+                <AutoSizer disableHeight onResize={() => cache.clearAll()}>
+                  {({ width }: AutoSizerChildrenProps) => (
+                    <Suspense fallback={<CircularProgress size="3rem" sx={{ mt: 4 }} />}>
+                      <List
+                        autoHeight
+                        height={height}
+                        rowCount={getRowCount()}
+                        rowHeight={cache.rowHeight}
+                        rowRenderer={renderRow}
+                        width={width}
+                        scrollTop={scrollTop}
+                        // isScrolling={isScrolling}
+                        // estimatedRowSize={250 * 200}
+                        erscanRowCount={10}
+                      />
+                    </Suspense>
+                  )}
+                </AutoSizer>
+              </>
             )}
           </WindowScroller>
         </Box>
       </Box>
-      <FooterLayout />
     </>
   );
 }

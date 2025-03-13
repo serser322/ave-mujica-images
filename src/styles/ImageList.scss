@@ -1,21 +1,37 @@
 .image-item-row {
   display: flex;
   justify-content: center;
-  height: fit-content;
+  height: 100%;
+  gap: 1rem;
+  padding: 0.5rem 1rem;
 
   .image-item {
-    margin: 0.4rem;
+    display: flex;
+    justify-content: center;
     width: 100%;
   }
 }
 
 @media screen and (min-width: 768px) {
   .image-item-row {
+    // gap: 1.2rem;
     .image-item {
-      display: flex;
-      justify-content: center;
-      width: 47%;
-      margin: 0.5rem;
+      //   width: 47%;
+      //   margin: 0.5rem;
     }
   }
 }
+
+@media screen and (min-width: 992px) {
+  .image-item-row {
+    padding: 0.5rem 1.2rem;
+  }
+}
+
+// @media screen and (min-width: 1200px) {
+//   .image-item-row {
+//     .image-item {
+//       width: 25%;
+//     }
+//   }
+// }
