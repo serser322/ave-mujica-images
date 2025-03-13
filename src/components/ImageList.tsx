@@ -5,9 +5,9 @@ import { Box, CircularProgress } from '@mui/material';
 import ImageItem from './ImageItem';
 import { BaseImage } from '@/type';
 import { CellMeasurer, CellMeasurerCache, List, WindowScroller, AutoSizer } from 'react-virtualized';
-import 'react-virtualized/styles.css'; // only needs to be imported once
+import 'react-virtualized/styles.css';
 import FooterLayout from '@/layout/FooterLayout';
-// import AutoSizer from 'react-virtualized-auto-sizer';
+import '@/styles/ImageList.scss';
 
 interface WindowScrollerProps {
   height: number;
@@ -68,9 +68,13 @@ export default function ImageList() {
 
     return (
       <CellMeasurer cache={cache} columnIndex={0} key={key} parent={parent} rowIndex={index}>
-        <div style={{ ...style, display: 'flex', flexDirection: 'row', justifyContent: 'center' }}>
+        <div className="image-item-row" style={{ ...style }}>
           {itemsForRow.map((image) => (
-            <div key={image.name} style={{ width: '32%', margin: '0.5rem', display: 'flex', justifyContent: 'center' }}>
+            <div
+              key={image.name}
+              className="image-item"
+              //   style={{ width: '32%', margin: '0.5rem', display: 'flex', justifyContent: 'center' }}
+            >
               <ImageItem image={image} />
             </div>
           ))}

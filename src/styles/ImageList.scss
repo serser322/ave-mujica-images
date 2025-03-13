@@ -1,0 +1,21 @@
+.image-item-row {
+  display: flex;
+  justify-content: center;
+  height: fit-content;
+
+  .image-item {
+    margin: 0.4rem;
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .image-item-row {
+    .image-item {
+      display: flex;
+      justify-content: center;
+      width: 47%;
+      margin: 0.5rem;
+    }
+  }
+}
