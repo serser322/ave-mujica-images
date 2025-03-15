@@ -5,7 +5,7 @@
   gap: 1rem;
   padding: 0.4rem 0;
 
-  .image-item {
+  .row-item {
     display: flex;
     justify-content: center;
     width: 100%;
@@ -19,7 +19,7 @@
 @media screen and (min-width: 768px) {
   .image-item-row {
     padding: 0.5rem 0;
-    .image-item {
+    .row-item {
       width: 49%;
     }
   }
@@ -27,7 +27,7 @@
 
 @media screen and (min-width: 992px) {
   .image-item-row {
-    .image-item {
+    .row-item {
       width: 32.5%;
     }
   }
@@ -35,7 +35,7 @@
 
 @media screen and (min-width: 1200px) {
   .image-item-row {
-    .image-item {
+    .row-item {
       width: 24%;
     }
   }
