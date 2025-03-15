@@ -8,8 +8,6 @@
   transition: all 0.3s ease-out;
   background-color: #222222;
   //   background-image: url('../assets/black.webp');
-  transform: translateY(-15px);
-  animation: ImageWrapperComeIn ease 1s 0.3s forwards;
 
   img {
     display: block;
@@ -17,9 +15,6 @@
     height: auto;
     border: 0 solid #fff;
     border-radius: 10px;
-    // opacity: 0;
-    // transform: translateY(-15px);
-    // animation: ImageWrapperComeIn ease 1s 0.3s forwards;
 
     &.lazyload,
     &.lazyloading {
@@ -89,7 +84,7 @@
     }
 
     &:hover {
-      opacity: 100%;
+      opacity: 1;
 
       .buttons {
         transform: translateY(0px);
@@ -107,16 +102,5 @@
     &:hover {
       transform: scale(1.05);
     }
-  }
-}
-
-@keyframes ImageWrapperComeIn {
-  from {
-    transform: translateY(-15px);
-    //   opacity: 0;
-  }
-  to {
-    transform: translateX(0);
-    //   opacity: 1;
   }
 }

@@ -64,7 +64,7 @@ export default function ImageList() {
       <CellMeasurer cache={cache} columnIndex={0} key={key} parent={parent} rowIndex={index}>
         <div className="image-item-row" style={{ ...style }}>
           {rowItems.map((image) => (
-            <Box key={image.name} className="image-item">
+            <Box key={image.name} className="row-item">
               <ImageItem image={image} />
             </Box>
           ))}
