@@ -1,5 +1,5 @@
 import { Box } from '@mui/material';
-import '@/styles/HeaderLayout.scss';
+import '@/styles/layout/HeaderLayout.scss';
 import { ImageSearch } from '@mui/icons-material';
 import { latestEpisode } from './contentLayoutSlice';
 
