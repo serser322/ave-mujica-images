@@ -1,6 +1,6 @@
 import Box from '@mui/material/Box';
 import GitHubButton from 'react-github-btn';
-import '@/styles/FooterLayout.scss';
+import '@/styles/layout/FooterLayout.scss';
 
 export default function FooterLayout() {
   return (

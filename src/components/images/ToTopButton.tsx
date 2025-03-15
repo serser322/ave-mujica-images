@@ -1,7 +1,7 @@
 import { Upload } from '@mui/icons-material';
 import { IconButton, Tooltip } from '@mui/material';
 import { useEffect, useState } from 'react';
-import '@/styles/ToTopButton.scss';
+import '@/styles/components/ToTopButton.scss';
 
 export default function ToTopButton() {
   const [isVisible, setIsVisible] = useState(false);

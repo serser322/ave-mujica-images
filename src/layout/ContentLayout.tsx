@@ -1,7 +1,7 @@
 import { ReactNode, useEffect, useState } from 'react';
 import { Box } from '@mui/material';
-import NotificationAlert from '@/components/NotificationAlert';
-import BaseDialog from '@/components/BaseDialog';
+import NotificationAlert from '@/components/common/NotificationAlert';
+import BaseDialog from '@/components/common/BaseDialog';
 
 export default function ContentLayout({ children }: { children: ReactNode }) {
   const [dialogOpen, setDialogOpen] = useState(false);

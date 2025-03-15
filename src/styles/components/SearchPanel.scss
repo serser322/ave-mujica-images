@@ -1,0 +1,36 @@
+.search-area {
+  position: sticky;
+  top: 15px;
+  right: 0;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 2em auto 1.1rem;
+  z-index: 2;
+  backdrop-filter: blur(5px);
+  height: 60px;
+  transition: all 0.3s ease-in-out;
+}
+
+.come-in-animation {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: ComeInAnimation ease 1s 0.3s forwards;
+}
+
+@keyframes ComeInAnimation {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .search-area {
+    gap: 1.5rem;
+  }
+}

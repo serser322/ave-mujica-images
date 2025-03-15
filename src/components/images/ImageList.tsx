@@ -5,10 +5,9 @@ import { Box, CircularProgress } from '@mui/material';
 import ImageItem from './ImageItem';
 import { BaseImage } from '@/type';
 import { CellMeasurer, CellMeasurerCache, List, WindowScroller, AutoSizer } from 'react-virtualized';
-import 'react-virtualized/styles.css';
-
-import '@/styles/ImageList.scss';
 import { MeasuredCellParent } from 'react-virtualized/dist/es/CellMeasurer';
+import 'react-virtualized/styles.css';
+import '@/styles/components/ImageList.scss';
 
 interface WindowScrollerProps {
   height: number;
