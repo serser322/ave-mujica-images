@@ -1,4 +1,4 @@
-import { useEffect, useState, Suspense, lazy, CSSProperties } from 'react';
+import { useEffect, useState, Suspense, CSSProperties } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/store/store';
 import { Box, CircularProgress } from '@mui/material';
@@ -8,6 +8,7 @@ import { CellMeasurer, CellMeasurerCache, List, WindowScroller, AutoSizer } from
 import 'react-virtualized/styles.css';
 
 import '@/styles/ImageList.scss';
+import { MeasuredCellParent } from 'react-virtualized/dist/es/CellMeasurer';
 
 interface WindowScrollerProps {
   height: number;
@@ -22,13 +23,9 @@ interface AutoSizerChildrenProps {
 interface ListRowRendererProps {
   index: number;
   key: string;
-  parent: unknown;
+  parent: MeasuredCellParent;
   style: CSSProperties;
 }
-
-type RenderRowProps = ListRowRendererProps & {
-  width: number;
-};
 
 export default function ImageList() {
   const defaultImageList = useSelector((state: RootState) => state.contentLayout.defaultImageList);
@@ -37,7 +34,6 @@ export default function ImageList() {
   const order = useSelector((state: RootState) => state.contentLayout.order);
   const [imageList, setImageList] = useState<BaseImage[]>(defaultImageList);
 
-  const LazyImageItem = lazy(() => import('./ImageItem'));
   const searchImages = () => {
     if (keyword === '' && episode === 0) {
       setImageList(defaultImageList);
@@ -58,17 +54,17 @@ export default function ImageList() {
 
   const cache = new CellMeasurerCache({
     fixedWidth: true,
-    defaultHeight: 200, // A reasonable default height
+    defaultHeight: 500,
   });
 
-  const renderRow = ({ index, key, style, parent }: RenderRowProps) => {
+  const renderRow = ({ index, key, style, parent }: ListRowRendererProps) => {
     const columnCount = getColumnCount();
-    const itemsForRow = imageList.slice(index * columnCount, index * columnCount + columnCount);
+    const rowItems = imageList.slice(index * columnCount, index * columnCount + columnCount);
 
     return (
       <CellMeasurer cache={cache} columnIndex={0} key={key} parent={parent} rowIndex={index}>
         <div className="image-item-row" style={{ ...style }}>
-          {itemsForRow.map((image) => (
+          {rowItems.map((image) => (
             <Box key={image.name} className="image-item">
               <ImageItem image={image} />
             </Box>
@@ -99,18 +95,13 @@ export default function ImageList() {
       </Box>
       <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
         {imageList.length === 0 && <Box sx={{ mt: 2, color: '#e6e6e6' }}>查無截圖 QQ</Box>}
-        {/* <Suspense fallback={<CircularProgress size="3rem" sx={{ mt: 4 }} />}>
-          {imageList.map((image) => (
-            <LazyImageItem key={image.name} image={image} />
-          ))}
-        </Suspense> */}
         <Box sx={{ width: '100%', height: '100%' }}>
-          <WindowScroller>
-            {({ height, scrollTop }: WindowScrollerProps) => (
-              <>
-                <AutoSizer disableHeight onResize={() => cache.clearAll()}>
-                  {({ width }: AutoSizerChildrenProps) => (
-                    <Suspense fallback={<CircularProgress size="3rem" sx={{ mt: 4 }} />}>
+          <Suspense fallback={<CircularProgress size="3rem" sx={{ mt: 4 }} />}>
+            <WindowScroller>
+              {({ height, scrollTop }: WindowScrollerProps) => (
+                <>
+                  <AutoSizer disableHeight onResize={() => cache.clearAll()}>
+                    {({ width }: AutoSizerChildrenProps) => (
                       <List
                         autoHeight
                         height={height}
@@ -119,16 +110,14 @@ export default function ImageList() {
                         rowRenderer={renderRow}
                         width={width}
                         scrollTop={scrollTop}
-                        // isScrolling={isScrolling}
-                        // estimatedRowSize={250 * 200}
-                        erscanRowCount={10}
+                        erscanRowCount={15}
                       />
-                    </Suspense>
-                  )}
-                </AutoSizer>
-              </>
-            )}
-          </WindowScroller>
+                    )}
+                  </AutoSizer>
+                </>
+              )}
+            </WindowScroller>
+          </Suspense>
         </Box>
       </Box>
     </>

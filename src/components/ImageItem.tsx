@@ -75,7 +75,7 @@ export default function ImageItem({ image }: ImageItemProps) {
 
   return (
     <>
-      <Box className="image-item-wrapper">
+      <Box className="image-item-wrapper" data-expand="-500">
         <img
           style={{ width: '100%', height: 'auto' }}
           data-src={webpUrl}

@@ -1,16 +1,15 @@
 .image-item-wrapper {
   width: 100%;
-  //   margin-bottom: 0.6rem;
   height: fit-content;
-  border: 2px solid rgba(255, 255, 255, 0);
   border-radius: 11px;
   position: relative;
   cursor: pointer;
   box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.2);
   transition: all 0.3s ease-out;
-  //   opacity: 0;
-  //   transform: translateY(-20px);
-  //   animation: ImageComeIn ease 1s 0.3s forwards;
+  background-color: #222222;
+  //   background-image: url('../assets/black.webp');
+  transform: translateY(-15px);
+  animation: ImageWrapperComeIn ease 1s 0.3s forwards;
 
   img {
     display: block;
@@ -18,9 +17,20 @@
     height: auto;
     border: 0 solid #fff;
     border-radius: 10px;
-    opacity: 0;
-    transform: translateY(-20px);
-    animation: ImageComeIn ease 1s 0.3s forwards;
+    // opacity: 0;
+    // transform: translateY(-15px);
+    // animation: ImageWrapperComeIn ease 1s 0.3s forwards;
+
+    &.lazyload,
+    &.lazyloading {
+      transform: translateY(-15px);
+      opacity: 0;
+    }
+    &.lazyloaded {
+      transform: translateY(0px);
+      opacity: 1;
+      transition: all 0.5s ease-in-out;
+    }
   }
 
   &:hover {
@@ -52,9 +62,9 @@
       bottom: 0;
       background: linear-gradient(
         180deg,
-        rgba(0, 0, 0, 0.7) 0%,
-        rgba(0, 0, 0, 0.1) 30%,
-        rgba(0, 0, 0, 0.1) 70%,
+        rgba(0, 0, 0, 0.8) 0%,
+        rgba(0, 0, 0, 0.1) 35%,
+        rgba(0, 0, 0, 0.1) 65%,
         rgba(0, 0, 0, 0.9) 100%
       );
     }
@@ -92,42 +102,21 @@
   }
 }
 
-// @media screen and (min-width: 576px) {
-//   .image-item-wrapper {
-//     margin: 0.4rem;
-//     width: 47%;
-//   }
-// }
-
 @media screen and (min-width: 768px) {
   .image-item-wrapper {
-    // width: 47%;
-    // margin: 0.5rem;
     &:hover {
       transform: scale(1.05);
     }
   }
 }
 
-@media screen and (min-width: 992px) {
-  .image-item-wrapper {
-    // width: 31.3%;
-  }
-}
-
-@media screen and (min-width: 1200px) {
-  .image-item-wrapper {
-    // width: 23.5%;
-  }
-}
-
-@keyframes ImageComeIn {
+@keyframes ImageWrapperComeIn {
   from {
-    transform: translateY(-20px);
-    opacity: 0;
+    transform: translateY(-15px);
+    //   opacity: 0;
   }
   to {
     transform: translateX(0);
-    opacity: 1;
+    //   opacity: 1;
   }
 }

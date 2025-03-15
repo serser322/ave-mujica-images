@@ -3,7 +3,7 @@
   justify-content: center;
   height: 100%;
   gap: 1rem;
-  padding: 0.5rem 1rem;
+  padding: 0.4rem 0;
 
   .image-item {
     display: flex;
@@ -11,27 +11,32 @@
     width: 100%;
   }
 }
+.ReactVirtualized__List,
+.ReactVirtualized__Grid__innerScrollContainer {
+  overflow: visible !important;
+}
 
 @media screen and (min-width: 768px) {
   .image-item-row {
-    // gap: 1.2rem;
+    padding: 0.5rem 0;
     .image-item {
-      //   width: 47%;
-      //   margin: 0.5rem;
+      width: 49%;
     }
   }
 }
 
 @media screen and (min-width: 992px) {
   .image-item-row {
-    padding: 0.5rem 1.2rem;
+    .image-item {
+      width: 32.5%;
+    }
   }
 }
 
-// @media screen and (min-width: 1200px) {
-//   .image-item-row {
-//     .image-item {
-//       width: 25%;
-//     }
-//   }
-// }
+@media screen and (min-width: 1200px) {
+  .image-item-row {
+    .image-item {
+      width: 24%;
+    }
+  }
+}
