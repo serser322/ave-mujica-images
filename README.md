@@ -31,7 +31,7 @@
 
 <a href="https://www.youtube.com/watch?v=dxmmSFQxWzM&list=PL12UaAf_xzfo6TAmxIM7rEvrJAB0rzAAO"><strong>BanG Dream - Ave Mujica (木棉花) »</strong></a>
 
-## 版本 1.1.11
+## 版本 1.1.13
 
 [Vite]: https://img.shields.io/badge/Vite-B73BFE?style=for-the-badge&logo=vite&logoColor=FFD62E
 [Vite-url]: https://vitejs.dev/
