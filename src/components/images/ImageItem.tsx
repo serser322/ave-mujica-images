@@ -90,7 +90,7 @@ export default function ImageItem({ image }: ImageItemProps) {
             <ImageIconButton title="下載JPG檔" icon={<Download />} onClick={downloadImage} />
             <ImageIconButton title="圖片連結複製" icon={<InsertLink />} onClick={copyLinkToClipboard} />
           </Box>
-          <Box className="image-item-name">{image.name}</Box>
+          <Box className="image-item-name">{image.name.split('_')[0]}</Box>
         </Box>
       </Box>
     </>
