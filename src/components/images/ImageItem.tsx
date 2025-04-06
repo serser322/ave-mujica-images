@@ -5,8 +5,9 @@ import '@/styles/components/ImageItem.scss';
 import Box from '@mui/material/Box';
 import { ContentCopy, Download, InsertLink } from '@mui/icons-material';
 import ImageIconButton from './ImageIconButton';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setNotification } from '@/layout/contentLayoutSlice';
+import { RootState } from '@/store/store';
 
 interface ImageItemProps {
   image: BaseImage;
@@ -14,9 +15,10 @@ interface ImageItemProps {
 
 export default function ImageItem({ image }: ImageItemProps) {
   const dispatch = useDispatch();
+  const currentTab = useSelector((state: RootState) => state.contentLayout.currentTab);
   const placeholderUrl = new URL(`../../assets/black.webp`, import.meta.url).href;
-  const webpUrl = new URL(`../../assets/webp/${image.name}.webp`, import.meta.url).href;
-  const jpgUrl = new URL(`../../assets/jpg/${image.name}.jpg`, import.meta.url).href;
+  const webpUrl = new URL(`../../assets/webp/${currentTab}/${image.name}.webp`, import.meta.url).href;
+  const jpgUrl = new URL(`../../assets/jpg/${currentTab}/${image.name}.jpg`, import.meta.url).href;
 
   const copyImageToClipboard = async () => {
     const img = new Image();

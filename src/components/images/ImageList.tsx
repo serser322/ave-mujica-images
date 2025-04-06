@@ -27,7 +27,7 @@ interface ListRowRendererProps {
 }
 
 export default function ImageList() {
-  const currentTab = useSelector((state: RootState) => state.contentLayout.tab);
+  const currentTab = useSelector((state: RootState) => state.contentLayout.currentTab);
   const aveMujicaImages = useSelector((state: RootState) => state.contentLayout.aveMujicaImages);
   const myGOImages = useSelector((state: RootState) => state.contentLayout.myGOImages);
   const keyword = useSelector((state: RootState) => state.contentLayout.keyword);
@@ -52,7 +52,7 @@ export default function ImageList() {
       setImageList(filteredImageList);
     }
 
-    if (currentTab === 'my-go') {
+    if (currentTab === 'mygo') {
       if (keyword === '' && myGOEpisode === 0) {
         setImageList(myGOImages);
         return;
