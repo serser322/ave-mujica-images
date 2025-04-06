@@ -1,7 +1,6 @@
 import { Box } from '@mui/material';
 import '@/styles/layout/HeaderLayout.scss';
 import { ImageSearch } from '@mui/icons-material';
-import { latestEpisode } from './contentLayoutSlice';
 
 export default function HeaderLayout() {
   const logoUrl = new URL(`../assets/logo.png`, import.meta.url).href;
@@ -22,7 +21,7 @@ export default function HeaderLayout() {
             就將一切<span className="line-through">對話訊息</span>委身於Ave Mujica吧！
           </Box>
         </Box>
-        <Box className="update-info">最新集數: 第{latestEpisode}集</Box>
+        {/* <Box className="update-info">最新集數: 第{latestEpisode}集</Box> */}
       </header>
     </>
   );

@@ -3,8 +3,9 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   isNotificationOpen: false,
   notification: { severity: 'success', message: '' },
+  tab: 'ave-mujica',
   keyword: '',
-  episode: 0,
+  aveMujicaEpisode: 0,
   order: 'oldest',
   defaultImageList: [
     { name: '需不需要我把她叫醒', episode: 1 },
@@ -1259,14 +1260,17 @@ export const contentLayoutSlice = createSlice({
     setNotificationOpen: (state, action) => {
       state.isNotificationOpen = action.payload;
     },
+    setTab: (state, action) => {
+      state.tab = action.payload;
+    },
     setNotification: (state, action) => {
       state.notification = action.payload;
     },
     setKeyword: (state, action) => {
       state.keyword = action.payload;
     },
-    setEpisode: (state, action) => {
-      state.episode = action.payload;
+    setAveMujicaEpisode: (state, action) => {
+      state.aveMujicaEpisode = action.payload;
     },
     setOrder: (state, action) => {
       state.order = action.payload;
@@ -1277,7 +1281,14 @@ export const contentLayoutSlice = createSlice({
   },
 });
 
-export const { setNotificationOpen, setNotification, setKeyword, setEpisode, setOrder, setDefaultImageList } =
-  contentLayoutSlice.actions;
+export const {
+  setNotificationOpen,
+  setNotification,
+  setTab,
+  setKeyword,
+  setAveMujicaEpisode,
+  setOrder,
+  setDefaultImageList,
+} = contentLayoutSlice.actions;
 
 export default contentLayoutSlice.reducer;

@@ -29,24 +29,24 @@ interface ListRowRendererProps {
 export default function ImageList() {
   const defaultImageList = useSelector((state: RootState) => state.contentLayout.defaultImageList);
   const keyword = useSelector((state: RootState) => state.contentLayout.keyword);
-  const episode = useSelector((state: RootState) => state.contentLayout.episode);
+  const aveMujicaEpisode = useSelector((state: RootState) => state.contentLayout.aveMujicaEpisode);
   const order = useSelector((state: RootState) => state.contentLayout.order);
   const [imageList, setImageList] = useState<BaseImage[]>(defaultImageList);
 
   const searchImages = () => {
-    if (keyword === '' && episode === 0) {
+    if (keyword === '' && aveMujicaEpisode === 0) {
       setImageList(defaultImageList);
       return;
     }
 
-    if (episode === 0) {
+    if (aveMujicaEpisode === 0) {
       const filteredImageList = defaultImageList.filter((item) => item.name.toLowerCase().includes(keyword));
       setImageList(filteredImageList);
       return;
     }
 
     const filteredImageList = defaultImageList.filter(
-      (item) => item.name.toLowerCase().includes(keyword) && item.episode === episode
+      (item) => item.name.toLowerCase().includes(keyword) && item.episode === aveMujicaEpisode
     );
     setImageList(filteredImageList);
   };
@@ -86,12 +86,12 @@ export default function ImageList() {
 
   useEffect(() => {
     searchImages();
-  }, [keyword, episode, order, defaultImageList]);
+  }, [keyword, aveMujicaEpisode, order, defaultImageList]);
   return (
     <>
-      <Box className="come-in-animation" sx={{ ml: 1.5, mb: 1, color: '#dadada', fontSize: 12 }}>
+      {/* <Box className="come-in-animation" sx={{ ml: 1.5, mb: 1, color: '#dadada', fontSize: 12 }}>
         相關結果：{imageList.length} 張圖
-      </Box>
+      </Box> */}
       <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
         {imageList.length === 0 && <Box sx={{ mt: 2, color: '#e6e6e6' }}>查無截圖 QQ</Box>}
         <Box sx={{ width: '100%', height: '100%' }}>

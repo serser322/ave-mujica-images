@@ -1,17 +1,17 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@/store/store';
-import { latestEpisode, setEpisode } from '@/layout/contentLayoutSlice';
+import { latestEpisode, setAveMujicaEpisode } from '@/layout/contentLayoutSlice';
 import { Movie } from '@mui/icons-material';
 import { Box, FormControl, InputLabel, MenuItem, Select, SelectChangeEvent } from '@mui/material';
 
 export default function RangeSelectBar() {
   const dispatch = useDispatch();
-  const episode = useSelector((state: RootState) => state.contentLayout.episode);
+  const aveMujicaEpisode = useSelector((state: RootState) => state.contentLayout.aveMujicaEpisode);
   const episodes = Array.from({ length: latestEpisode }, (_, index) => index + 1).reverse();
   const rangeOptions = [0, ...episodes];
 
   const selectChangeHandler = (event: SelectChangeEvent<number>) => {
-    dispatch(setEpisode(event.target.value as number));
+    dispatch(setAveMujicaEpisode(event.target.value as number));
   };
 
   return (
@@ -20,7 +20,7 @@ export default function RangeSelectBar() {
         <InputLabel id="range-select-label">查看特定集數</InputLabel>
         <Select
           labelId="range-select-label"
-          value={episode}
+          value={aveMujicaEpisode}
           label="查看特定集數"
           onChange={selectChangeHandler}
           renderValue={(value) => (

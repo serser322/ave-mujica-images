@@ -7,7 +7,7 @@ import { SortToggleButtons } from '@/components/search/SortToggleButtons';
 import '@/styles/components/SearchPanel.scss';
 
 export default function SearchPanel() {
-  const episode = useSelector((state: RootState) => state.contentLayout.episode);
+  const aveMujicaEpisode = useSelector((state: RootState) => state.contentLayout.aveMujicaEpisode);
   return (
     <>
       <Box className="search-area come-in-animation">
@@ -17,7 +17,7 @@ export default function SearchPanel() {
         <Box sx={{ flex: 1 }}>
           <RangeSelectBar />
         </Box>
-        {episode === 0 && (
+        {aveMujicaEpisode === 0 && (
           <Box sx={{ flex: 0.5 }}>
             <SortToggleButtons />
           </Box>
