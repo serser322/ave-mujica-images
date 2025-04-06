@@ -10,8 +10,8 @@ const fs = require('fs');
 const sharp = require('sharp');
 
 const assetsDir = join(__dirname, 'src/assets');
-const webpDir = join(assetsDir, 'webp');
-const jpgDir = join(assetsDir, 'jpg');
+const webpDir = join(assetsDir, 'webp/mygo');
+const jpgDir = join(assetsDir, 'jpg/mygo');
 
 fs.readdirSync(webpDir).forEach((file) => {
   if (extname(file).toLowerCase() === '.webp') {
