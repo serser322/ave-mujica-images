@@ -27,28 +27,45 @@ interface ListRowRendererProps {
 }
 
 export default function ImageList() {
-  const defaultImageList = useSelector((state: RootState) => state.contentLayout.defaultImageList);
+  const currentTab = useSelector((state: RootState) => state.contentLayout.tab);
+  const aveMujicaImages = useSelector((state: RootState) => state.contentLayout.aveMujicaImages);
+  const myGOImages = useSelector((state: RootState) => state.contentLayout.myGOImages);
   const keyword = useSelector((state: RootState) => state.contentLayout.keyword);
   const aveMujicaEpisode = useSelector((state: RootState) => state.contentLayout.aveMujicaEpisode);
+  const myGOEpisode = useSelector((state: RootState) => state.contentLayout.myGOEpisode);
   const order = useSelector((state: RootState) => state.contentLayout.order);
-  const [imageList, setImageList] = useState<BaseImage[]>(defaultImageList);
+  const [imageList, setImageList] = useState<BaseImage[]>(aveMujicaImages);
 
   const searchImages = () => {
-    if (keyword === '' && aveMujicaEpisode === 0) {
-      setImageList(defaultImageList);
-      return;
-    }
+    if (currentTab === 'ave-mujica') {
+      if (keyword === '' && aveMujicaEpisode === 0) {
+        setImageList(aveMujicaImages);
+        return;
+      }
 
-    if (aveMujicaEpisode === 0) {
-      const filteredImageList = defaultImageList.filter((item) => item.name.toLowerCase().includes(keyword));
+      const filteredImageList = aveMujicaImages.filter((item) => {
+        const hasKeyword = item.name.toLowerCase().includes(keyword);
+        const matchEpisode = aveMujicaEpisode === 0 || item.episode === aveMujicaEpisode;
+        return hasKeyword && matchEpisode;
+      });
+
       setImageList(filteredImageList);
-      return;
     }
 
-    const filteredImageList = defaultImageList.filter(
-      (item) => item.name.toLowerCase().includes(keyword) && item.episode === aveMujicaEpisode
-    );
-    setImageList(filteredImageList);
+    if (currentTab === 'my-go') {
+      if (keyword === '' && myGOEpisode === 0) {
+        setImageList(myGOImages);
+        return;
+      }
+
+      const filteredImageList = myGOImages.filter((item) => {
+        const hasKeyword = item.name.toLowerCase().includes(keyword);
+        const matchEpisode = myGOEpisode === 0 || item.episode === myGOEpisode;
+        return hasKeyword && matchEpisode;
+      });
+
+      setImageList(filteredImageList);
+    }
   };
 
   const cache = new CellMeasurerCache({
@@ -86,7 +103,7 @@ export default function ImageList() {
 
   useEffect(() => {
     searchImages();
-  }, [keyword, aveMujicaEpisode, order, defaultImageList]);
+  }, [currentTab, keyword, aveMujicaEpisode, order, aveMujicaImages]);
   return (
     <>
       {/* <Box className="come-in-animation" sx={{ ml: 1.5, mb: 1, color: '#dadada', fontSize: 12 }}>

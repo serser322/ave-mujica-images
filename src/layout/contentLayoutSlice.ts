@@ -6,8 +6,9 @@ const initialState = {
   tab: 'ave-mujica',
   keyword: '',
   aveMujicaEpisode: 0,
+  myGOEpisode: 0,
   order: 'oldest',
-  defaultImageList: [
+  aveMujicaImages: [
     { name: '需不需要我把她叫醒', episode: 1 },
     { name: '就讓我們開始吧', episode: 1 },
     { name: '多麼可笑啊', episode: 1 },
@@ -1243,15 +1244,16 @@ const initialState = {
     { name: '[無詞]立希無奈嘆氣', episode: 13 },
     { name: '謝謝大家_2', episode: 13 },
   ],
+  myGOImages: [],
 };
 
-// const arr = initialState.defaultImageList.filter((item) => {
+// const arr = initialState.aveMujicaImages.filter((item) => {
 //   return data.find((i) => i.name === item.name);
 // });
 
 // console.log(arr);
 
-export const latestEpisode = initialState.defaultImageList[initialState.defaultImageList.length - 1].episode;
+export const latestEpisode = initialState.aveMujicaImages[initialState.aveMujicaImages.length - 1].episode;
 
 export const contentLayoutSlice = createSlice({
   name: 'contentLayout',
@@ -1272,11 +1274,17 @@ export const contentLayoutSlice = createSlice({
     setAveMujicaEpisode: (state, action) => {
       state.aveMujicaEpisode = action.payload;
     },
+    setMyGOEpisode: (state, action) => {
+      state.myGOEpisode = action.payload;
+    },
     setOrder: (state, action) => {
       state.order = action.payload;
     },
-    setDefaultImageList: (state, action) => {
-      state.defaultImageList = action.payload;
+    setAveMujicaImages: (state, action) => {
+      state.aveMujicaImages = action.payload;
+    },
+    setMyGOImages: (state, action) => {
+      state.myGOImages = action.payload;
     },
   },
 });
@@ -1287,8 +1295,10 @@ export const {
   setTab,
   setKeyword,
   setAveMujicaEpisode,
+  setMyGOEpisode,
   setOrder,
-  setDefaultImageList,
+  setAveMujicaImages,
+  setMyGOImages,
 } = contentLayoutSlice.actions;
 
 export default contentLayoutSlice.reducer;

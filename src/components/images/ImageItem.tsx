@@ -51,7 +51,7 @@ export default function ImageItem({ image }: ImageItemProps) {
   const downloadImage = () => {
     const a = document.createElement('a');
     a.href = jpgUrl;
-    a.download = `${image.name}.jpg`;
+    a.download = `${image.name.split('_')[0]}.jpg`;
 
     document.body.appendChild(a);
     a.click();
