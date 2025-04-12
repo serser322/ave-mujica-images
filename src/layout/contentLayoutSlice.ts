@@ -7,6 +7,10 @@ const initialState = {
   keyword: '',
   aveMujicaEpisode: 0,
   myGOEpisode: 0,
+  searchResultNum: {
+    aveMujica: 0,
+    myGO: 0,
+  },
   order: 'oldest',
   aveMujicaImages: [
     { name: '需不需要我把她叫醒', episode: 1 },
@@ -1358,6 +1362,9 @@ export const contentLayoutSlice = createSlice({
     setMyGOEpisode: (state, action) => {
       state.myGOEpisode = action.payload;
     },
+    setSearchResultNum: (state, action) => {
+      state.searchResultNum = action.payload;
+    },
     setOrder: (state, action) => {
       state.order = action.payload;
     },
@@ -1377,6 +1384,7 @@ export const {
   setKeyword,
   setAveMujicaEpisode,
   setMyGOEpisode,
+  setSearchResultNum,
   setOrder,
   setAveMujicaImages,
   setMyGOImages,

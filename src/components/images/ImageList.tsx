@@ -6,6 +6,7 @@ import ImageItem from './ImageItem';
 import { BaseImage } from '@/type';
 import { CellMeasurer, CellMeasurerCache, List, WindowScroller, AutoSizer } from 'react-virtualized';
 import { MeasuredCellParent } from 'react-virtualized/dist/es/CellMeasurer';
+import { setSearchResultNum } from '@/layout/contentLayoutSlice';
 import 'react-virtualized/styles.css';
 import '@/styles/components/ImageList.scss';
 
@@ -65,6 +66,7 @@ export default function ImageList() {
       });
 
       setImageList(filteredImageList);
+      //   setSearchResultNum({ aveMujica: aveMujicaImages.length, myGO: myGOImages.length });
     }
   };
 
