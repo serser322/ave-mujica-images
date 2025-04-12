@@ -103,7 +103,7 @@ export default function ImageList() {
 
   useEffect(() => {
     searchImages();
-  }, [currentTab, keyword, aveMujicaEpisode, order, aveMujicaImages]);
+  }, [currentTab, keyword, aveMujicaEpisode, myGOEpisode, order, aveMujicaImages]);
   return (
     <>
       {/* <Box className="come-in-animation" sx={{ ml: 1.5, mb: 1, color: '#dadada', fontSize: 12 }}>
