@@ -18,14 +18,14 @@ export default function BaseTabs() {
   //   }, [tabValue]);
 
   return (
-    <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+    <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
       <Tabs value={currentTab} onChange={tabHandler}>
         <Tab
           value="ave-mujica"
           label={
             <Box sx={{ display: 'flex', alignItems: 'center', mr: 1.5 }}>
               <Box sx={{ mr: 3, textTransform: 'capitalize' }}>Ave Mujica</Box>
-              <Badge badgeContent={searchResultNum.aveMujica} color="primary" />
+              <Badge badgeContent={searchResultNum.aveMujica} color="primary" showZero />
             </Box>
           }
         />
@@ -34,7 +34,7 @@ export default function BaseTabs() {
           label={
             <Box sx={{ display: 'flex', alignItems: 'center', mr: 1.5 }}>
               <Box sx={{ mr: 3, textTransform: 'capitalize' }}>MyGO!!!!!</Box>
-              <Badge badgeContent={searchResultNum.myGO} color="primary" />
+              <Badge badgeContent={searchResultNum.myGO} color="primary" showZero />
             </Box>
           }
         />

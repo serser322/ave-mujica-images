@@ -1,5 +1,5 @@
-import { useEffect, useState, Suspense, CSSProperties } from 'react';
-import { useSelector } from 'react-redux';
+import { useEffect, useState, Suspense, CSSProperties, useRef } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '@/store/store';
 import { Box, CircularProgress } from '@mui/material';
 import ImageItem from './ImageItem';
@@ -28,6 +28,7 @@ interface ListRowRendererProps {
 }
 
 export default function ImageList() {
+  const dispatch = useDispatch();
   const currentTab = useSelector((state: RootState) => state.contentLayout.currentTab);
   const aveMujicaImages = useSelector((state: RootState) => state.contentLayout.aveMujicaImages);
   const myGOImages = useSelector((state: RootState) => state.contentLayout.myGOImages);
@@ -38,35 +39,39 @@ export default function ImageList() {
   const [imageList, setImageList] = useState<BaseImage[]>(aveMujicaImages);
 
   const searchImages = () => {
-    if (currentTab === 'ave-mujica') {
-      if (keyword === '' && aveMujicaEpisode === 0) {
-        setImageList(aveMujicaImages);
-        return;
-      }
-
-      const filteredImageList = aveMujicaImages.filter((item) => {
+    let aveMujicaFilteredImages: BaseImage[] = [];
+    let myGOFilteredImages: BaseImage[] = [];
+    if (keyword !== '') {
+      aveMujicaFilteredImages = aveMujicaImages.filter((item) => {
         const hasKeyword = item.name.toLowerCase().includes(keyword);
         const matchEpisode = aveMujicaEpisode === 0 || item.episode === aveMujicaEpisode;
         return hasKeyword && matchEpisode;
       });
 
-      setImageList(filteredImageList);
-    }
-
-    if (currentTab === 'mygo') {
-      if (keyword === '' && myGOEpisode === 0) {
-        setImageList(myGOImages);
-        return;
-      }
-
-      const filteredImageList = myGOImages.filter((item) => {
+      myGOFilteredImages = myGOImages.filter((item) => {
         const hasKeyword = item.name.toLowerCase().includes(keyword);
         const matchEpisode = myGOEpisode === 0 || item.episode === myGOEpisode;
         return hasKeyword && matchEpisode;
       });
+    }
 
-      setImageList(filteredImageList);
-      //   setSearchResultNum({ aveMujica: aveMujicaImages.length, myGO: myGOImages.length });
+    if (currentTab === 'ave-mujica') {
+      setImageList(keyword === '' && aveMujicaEpisode === 0 ? aveMujicaImages : aveMujicaFilteredImages);
+    }
+
+    if (currentTab === 'mygo') {
+      setImageList(keyword === '' && myGOEpisode === 0 ? myGOImages : myGOFilteredImages);
+    }
+
+    setTabResultNum(aveMujicaFilteredImages, myGOFilteredImages);
+    if (cache) cache.clearAll();
+  };
+
+  const setTabResultNum = (aveMujicaFilteredImages: BaseImage[], myGOFilteredImages: BaseImage[]) => {
+    if (keyword === '') {
+      dispatch(setSearchResultNum({ aveMujica: aveMujicaImages.length, myGO: myGOImages.length }));
+    } else {
+      dispatch(setSearchResultNum({ aveMujica: aveMujicaFilteredImages.length, myGO: myGOFilteredImages.length }));
     }
   };
 
@@ -80,11 +85,11 @@ export default function ImageList() {
     const rowItems = imageList.slice(index * columnCount, index * columnCount + columnCount);
 
     return (
-      <CellMeasurer cache={cache} columnIndex={0} key={key} parent={parent} rowIndex={index}>
-        <div className="image-item-row" style={{ ...style }}>
+      <CellMeasurer cache={cache} columnIndex={0} key={index} parent={parent} rowIndex={index}>
+        <div className="image-item-row" key={key} style={{ ...style }}>
           {rowItems.map((image) => (
             <Box key={image.name} className="row-item">
-              <ImageItem image={image} />
+              <ImageItem image={image} key={image.name} />
             </Box>
           ))}
         </div>
@@ -121,6 +126,8 @@ export default function ImageList() {
                   <AutoSizer disableHeight onResize={() => cache.clearAll()}>
                     {({ width }: AutoSizerChildrenProps) => (
                       <List
+                        // cellRenderer={renderRow}
+                        // cellMeasurerCache={cache}
                         autoHeight
                         height={height}
                         rowCount={getRowCount()}
