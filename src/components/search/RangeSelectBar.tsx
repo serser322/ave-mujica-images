@@ -20,11 +20,11 @@ export default function RangeSelectBar() {
   return (
     <>
       <FormControl fullWidth sx={{ backgroundColor: 'rgba(66, 66, 66, 0.7)' }}>
-        <InputLabel id="range-select-label">查看特定集數</InputLabel>
+        <InputLabel id="range-select-label">{`查看 ${currentTab === 'ave-mujica' ? 'Ave Mujica' : 'MyGO'} 集數`}</InputLabel>
         <Select
           labelId="range-select-label"
           value={currentTab === 'ave-mujica' ? aveMujicaEpisode : myGOEpisode}
-          label="查看特定集數"
+          label={`查看 ${currentTab === 'ave-mujica' ? 'Ave Mujica' : 'MyGO'} 集數`}
           onChange={selectChangeHandler}
           renderValue={(value) => (
             <Box sx={{ display: 'flex', alignItems: 'center' }}>

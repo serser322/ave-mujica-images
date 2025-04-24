@@ -41,19 +41,18 @@ export default function ImageList() {
   const searchImages = () => {
     let aveMujicaFilteredImages: BaseImage[] = [];
     let myGOFilteredImages: BaseImage[] = [];
-    if (keyword !== '') {
-      aveMujicaFilteredImages = aveMujicaImages.filter((item) => {
-        const hasKeyword = item.name.toLowerCase().includes(keyword);
-        const matchEpisode = aveMujicaEpisode === 0 || item.episode === aveMujicaEpisode;
-        return hasKeyword && matchEpisode;
-      });
 
-      myGOFilteredImages = myGOImages.filter((item) => {
-        const hasKeyword = item.name.toLowerCase().includes(keyword);
-        const matchEpisode = myGOEpisode === 0 || item.episode === myGOEpisode;
-        return hasKeyword && matchEpisode;
-      });
-    }
+    aveMujicaFilteredImages = aveMujicaImages.filter((item) => {
+      const hasKeyword = item.name.toLowerCase().includes(keyword);
+      const matchEpisode = aveMujicaEpisode === 0 || item.episode === aveMujicaEpisode;
+      return hasKeyword && matchEpisode;
+    });
+
+    myGOFilteredImages = myGOImages.filter((item) => {
+      const hasKeyword = item.name.toLowerCase().includes(keyword);
+      const matchEpisode = myGOEpisode === 0 || item.episode === myGOEpisode;
+      return hasKeyword && matchEpisode;
+    });
 
     if (currentTab === 'ave-mujica') {
       setImageList(keyword === '' && aveMujicaEpisode === 0 ? aveMujicaImages : aveMujicaFilteredImages);
@@ -68,7 +67,7 @@ export default function ImageList() {
   };
 
   const setTabResultNum = (aveMujicaFilteredImages: BaseImage[], myGOFilteredImages: BaseImage[]) => {
-    if (keyword === '') {
+    if (keyword === '' && aveMujicaEpisode === 0 && myGOEpisode === 0) {
       dispatch(setSearchResultNum({ aveMujica: aveMujicaImages.length, myGO: myGOImages.length }));
     } else {
       dispatch(setSearchResultNum({ aveMujica: aveMujicaFilteredImages.length, myGO: myGOFilteredImages.length }));
@@ -126,8 +125,6 @@ export default function ImageList() {
                   <AutoSizer disableHeight onResize={() => cache.clearAll()}>
                     {({ width }: AutoSizerChildrenProps) => (
                       <List
-                        // cellRenderer={renderRow}
-                        // cellMeasurerCache={cache}
                         autoHeight
                         height={height}
                         rowCount={getRowCount()}
