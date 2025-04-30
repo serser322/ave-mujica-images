@@ -3,6 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@/store/store';
 import { setCurrentTab } from '@/layout/contentLayoutSlice';
 import { Badge, Box, Tab, Tabs } from '@mui/material';
+import TabImage from '@/components/images/TabImage';
+import aveMujicaLogo from '@/assets/ave_mujica_logo.png';
+import myGoLogo from '@/assets/mygo_logo.png';
 
 export default function BaseTabs() {
   const dispatch = useDispatch();
@@ -28,16 +31,19 @@ export default function BaseTabs() {
           value="ave-mujica"
           label={
             <Box sx={{ display: 'flex', alignItems: 'center', mr: 1.5 }}>
-              <Box sx={{ mr: 3, fontWeight: 600, textTransform: 'capitalize' }}>Ave Mujica</Box>
+              <TabImage image={aveMujicaLogo} />
+              <Box sx={{ mr: 3, fontSize: '1.1rem', fontWeight: 600, textTransform: 'capitalize' }}>Ave Mujica</Box>
               <Badge badgeContent={searchResultNum.aveMujica} color="primary" showZero />
             </Box>
           }
+          sx={{ mr: 1 }}
         />
         <Tab
           value="mygo"
           label={
             <Box sx={{ display: 'flex', alignItems: 'center', mr: 1.5 }}>
-              <Box sx={{ mr: 3, fontWeight: 600, textTransform: 'capitalize' }}>MyGO!!!!!</Box>
+              <TabImage image={myGoLogo} />
+              <Box sx={{ mr: 3, fontSize: '1.1rem', fontWeight: 600, textTransform: 'capitalize' }}>MyGO!!!!!</Box>
               <Badge badgeContent={searchResultNum.myGO} color="primary" showZero />
             </Box>
           }
