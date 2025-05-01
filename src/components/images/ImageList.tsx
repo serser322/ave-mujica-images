@@ -1,4 +1,4 @@
-import { useEffect, useState, Suspense, CSSProperties, useRef } from 'react';
+import { useEffect, useState, Suspense, CSSProperties } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '@/store/store';
 import { Box, CircularProgress } from '@mui/material';
@@ -7,6 +7,7 @@ import { BaseImage } from '@/type';
 import { CellMeasurer, CellMeasurerCache, List, WindowScroller, AutoSizer } from 'react-virtualized';
 import { MeasuredCellParent } from 'react-virtualized/dist/es/CellMeasurer';
 import { setSearchResultNum } from '@/layout/contentLayoutSlice';
+import underConstructionImg from '@/assets/under-construction-symbol-icon.png';
 import 'react-virtualized/styles.css';
 import '@/styles/components/ImageList.scss';
 
@@ -118,6 +119,14 @@ export default function ImageList() {
       <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
         {imageList.length === 0 && <Box sx={{ mt: 2, color: '#e6e6e6' }}>查無截圖 QQ</Box>}
         <Box sx={{ width: '100%', height: '100%' }}>
+          {currentTab === 'mygo' && (
+            <Box sx={{ display: 'flex', alignItems: 'center' }}>
+              <Box sx={{ width: '40px', mr: 3 }}>
+                <img src={underConstructionImg} alt="" style={{ width: '100%' }} />
+              </Box>
+              <Box>施工中</Box>
+            </Box>
+          )}
           <Suspense fallback={<CircularProgress size="3rem" sx={{ mt: 4 }} />}>
             <WindowScroller>
               {({ height, scrollTop }: WindowScrollerProps) => (

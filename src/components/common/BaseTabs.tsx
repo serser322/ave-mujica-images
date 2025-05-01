@@ -6,6 +6,7 @@ import { Badge, Box, Tab, Tabs } from '@mui/material';
 import TabImage from '@/components/images/TabImage';
 import aveMujicaLogo from '@/assets/ave_mujica_logo.png';
 import myGoLogo from '@/assets/mygo_logo.png';
+import underConstructionImg from '@/assets/under-construction-symbol-icon.png';
 
 export default function BaseTabs() {
   const dispatch = useDispatch();
@@ -45,6 +46,9 @@ export default function BaseTabs() {
               <TabImage image={myGoLogo} />
               <Box sx={{ mr: 3, fontSize: '1.1rem', fontWeight: 600, textTransform: 'capitalize' }}>MyGO!!!!!</Box>
               <Badge badgeContent={searchResultNum.myGO} color="primary" showZero />
+              <Box sx={{ width: '35px', height: '31px', ml: 3 }}>
+                <img src={underConstructionImg} alt="" style={{ width: '100%' }} />
+              </Box>
             </Box>
           }
         />
