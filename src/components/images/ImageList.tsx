@@ -117,19 +117,19 @@ export default function ImageList() {
         相關結果：{imageList.length} 張圖
       </Box> */}
       <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
-        {imageList.length === 0 && <Box sx={{ mt: 2, color: '#e6e6e6' }}>查無截圖 QQ</Box>}
         <Box sx={{ width: '100%', height: '100%' }}>
           {currentTab === 'mygo' && (
-            <Box sx={{ display: 'flex', alignItems: 'center' }}>
-              <Box sx={{ width: '40px', mr: 3 }}>
+            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', mb: 1 }}>
+              <Box sx={{ width: '36px', mr: 3 }}>
                 <img src={underConstructionImg} alt="" style={{ width: '100%' }} />
               </Box>
-              <Box>施工中</Box>
+              <Box sx={{ fontSize: '0.9rem' }}>MyGO 目前更新至第6集，持續施工中...</Box>
             </Box>
           )}
-          <Suspense fallback={<CircularProgress size="3rem" sx={{ mt: 4 }} />}>
-            <WindowScroller>
-              {({ height, scrollTop }: WindowScrollerProps) => (
+          {imageList.length === 0 && <Box sx={{ mt: 2, color: '#e6e6e6' }}>查無截圖 QQ</Box>}
+          <WindowScroller>
+            {({ height, scrollTop }: WindowScrollerProps) => (
+              <Suspense fallback={<CircularProgress size="3rem" sx={{ mt: 4 }} />}>
                 <>
                   <AutoSizer disableHeight onResize={() => cache.clearAll()}>
                     {({ width }: AutoSizerChildrenProps) => (
@@ -146,9 +146,9 @@ export default function ImageList() {
                     )}
                   </AutoSizer>
                 </>
-              )}
-            </WindowScroller>
-          </Suspense>
+              </Suspense>
+            )}
+          </WindowScroller>
         </Box>
       </Box>
     </>

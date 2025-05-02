@@ -21,7 +21,7 @@ export default function HeaderLayout() {
             就將一切<span className="line-through">對話訊息</span>委身於 MyGo 與 Ave Mujica 吧！
           </Box>
         </Box>
-        {/* <Box className="update-info">最新集數: 第{latestEpisode}集</Box> */}
+        {/* <Box className="update-info">最新集數: 第{mujicaLatestEpisode}集</Box> */}
       </header>
     </>
   );

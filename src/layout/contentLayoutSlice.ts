@@ -1739,7 +1739,8 @@ const initialState = {
 
 // console.log(arr);
 
-export const latestEpisode = initialState.aveMujicaImages[initialState.aveMujicaImages.length - 1].episode;
+export const mujicaLatestEpisode = initialState.aveMujicaImages[initialState.aveMujicaImages.length - 1].episode;
+export const myGOLatestEpisode = initialState.myGOImages[initialState.myGOImages.length - 1].episode;
 
 export const contentLayoutSlice = createSlice({
   name: 'contentLayout',

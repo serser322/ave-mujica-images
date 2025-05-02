@@ -1,6 +1,11 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@/store/store';
-import { latestEpisode, setAveMujicaEpisode, setMyGOEpisode } from '@/layout/contentLayoutSlice';
+import {
+  mujicaLatestEpisode,
+  myGOLatestEpisode,
+  setAveMujicaEpisode,
+  setMyGOEpisode,
+} from '@/layout/contentLayoutSlice';
 import { Movie } from '@mui/icons-material';
 import { Box, FormControl, InputLabel, MenuItem, Select, SelectChangeEvent } from '@mui/material';
 
@@ -9,8 +14,9 @@ export default function RangeSelectBar() {
   const currentTab = useSelector((state: RootState) => state.contentLayout.currentTab);
   const aveMujicaEpisode = useSelector((state: RootState) => state.contentLayout.aveMujicaEpisode);
   const myGOEpisode = useSelector((state: RootState) => state.contentLayout.myGOEpisode);
-  const episodes = Array.from({ length: latestEpisode }, (_, index) => index + 1).reverse();
-  const rangeOptions = [0, ...episodes];
+  const mujicaEpisodes = [0, ...Array.from({ length: mujicaLatestEpisode }, (_, index) => index + 1).reverse()];
+  const myGoEpisodes = [0, ...Array.from({ length: myGOLatestEpisode }, (_, index) => index + 1).reverse()];
+  //   const rangeOptions = [0, ...episodes];
 
   const selectChangeHandler = (event: SelectChangeEvent<number>) => {
     if (currentTab === 'mygo') dispatch(setMyGOEpisode(event.target.value as number));
@@ -33,7 +39,7 @@ export default function RangeSelectBar() {
             </Box>
           )}
         >
-          {rangeOptions.map((item) => (
+          {(currentTab === 'ave-mujica' ? mujicaEpisodes : myGoEpisodes).map((item) => (
             <MenuItem key={item} value={item}>
               <Movie fontSize="small" sx={{ mr: 1.5 }} /> {item === 0 ? '全 部' : `第 ${item} 集`}
             </MenuItem>
