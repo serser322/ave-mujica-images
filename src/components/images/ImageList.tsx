@@ -126,7 +126,7 @@ export default function ImageList() {
               <Box sx={{ fontSize: '0.9rem' }}>MyGO 目前更新至第6集，持續施工中...</Box>
             </Box>
           )}
-          {imageList.length === 0 && <Box sx={{ mt: 2, color: '#e6e6e6' }}>查無截圖 QQ</Box>}
+          <Box>{imageList.length === 0 && <Box sx={{ mt: 2, color: '#e6e6e6' }}>查無截圖 QQ</Box>}</Box>
           <WindowScroller>
             {({ height, scrollTop }: WindowScrollerProps) => (
               <Suspense fallback={<CircularProgress size="3rem" sx={{ mt: 4 }} />}>
