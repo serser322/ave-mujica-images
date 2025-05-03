@@ -1,11 +1,13 @@
 import { useEffect, useState, Suspense, CSSProperties } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '@/store/store';
 import { Box, CircularProgress } from '@mui/material';
 import ImageItem from './ImageItem';
 import { BaseImage } from '@/type';
 import { CellMeasurer, CellMeasurerCache, List, WindowScroller, AutoSizer } from 'react-virtualized';
 import { MeasuredCellParent } from 'react-virtualized/dist/es/CellMeasurer';
+import { setSearchResultNum } from '@/layout/contentLayoutSlice';
+import underConstructionImg from '@/assets/under-construction-symbol-icon.png';
 import 'react-virtualized/styles.css';
 import '@/styles/components/ImageList.scss';
 
@@ -27,28 +29,50 @@ interface ListRowRendererProps {
 }
 
 export default function ImageList() {
-  const defaultImageList = useSelector((state: RootState) => state.contentLayout.defaultImageList);
+  const dispatch = useDispatch();
+  const currentTab = useSelector((state: RootState) => state.contentLayout.currentTab);
+  const aveMujicaImages = useSelector((state: RootState) => state.contentLayout.aveMujicaImages);
+  const myGOImages = useSelector((state: RootState) => state.contentLayout.myGOImages);
   const keyword = useSelector((state: RootState) => state.contentLayout.keyword);
-  const episode = useSelector((state: RootState) => state.contentLayout.episode);
+  const aveMujicaEpisode = useSelector((state: RootState) => state.contentLayout.aveMujicaEpisode);
+  const myGOEpisode = useSelector((state: RootState) => state.contentLayout.myGOEpisode);
   const order = useSelector((state: RootState) => state.contentLayout.order);
-  const [imageList, setImageList] = useState<BaseImage[]>(defaultImageList);
+  const [imageList, setImageList] = useState<BaseImage[]>(aveMujicaImages);
 
   const searchImages = () => {
-    if (keyword === '' && episode === 0) {
-      setImageList(defaultImageList);
-      return;
+    let aveMujicaFilteredImages: BaseImage[] = [];
+    let myGOFilteredImages: BaseImage[] = [];
+
+    aveMujicaFilteredImages = aveMujicaImages.filter((item) => {
+      const hasKeyword = item.name.toLowerCase().includes(keyword);
+      const matchEpisode = aveMujicaEpisode === 0 || item.episode === aveMujicaEpisode;
+      return hasKeyword && matchEpisode;
+    });
+
+    myGOFilteredImages = myGOImages.filter((item) => {
+      const hasKeyword = item.name.toLowerCase().includes(keyword);
+      const matchEpisode = myGOEpisode === 0 || item.episode === myGOEpisode;
+      return hasKeyword && matchEpisode;
+    });
+
+    if (currentTab === 'ave-mujica') {
+      setImageList(keyword === '' && aveMujicaEpisode === 0 ? aveMujicaImages : aveMujicaFilteredImages);
     }
 
-    if (episode === 0) {
-      const filteredImageList = defaultImageList.filter((item) => item.name.toLowerCase().includes(keyword));
-      setImageList(filteredImageList);
-      return;
+    if (currentTab === 'mygo') {
+      setImageList(keyword === '' && myGOEpisode === 0 ? myGOImages : myGOFilteredImages);
     }
 
-    const filteredImageList = defaultImageList.filter(
-      (item) => item.name.toLowerCase().includes(keyword) && item.episode === episode
-    );
-    setImageList(filteredImageList);
+    setTabResultNum(aveMujicaFilteredImages, myGOFilteredImages);
+    if (cache) cache.clearAll();
+  };
+
+  const setTabResultNum = (aveMujicaFilteredImages: BaseImage[], myGOFilteredImages: BaseImage[]) => {
+    if (keyword === '' && aveMujicaEpisode === 0 && myGOEpisode === 0) {
+      dispatch(setSearchResultNum({ aveMujica: aveMujicaImages.length, myGO: myGOImages.length }));
+    } else {
+      dispatch(setSearchResultNum({ aveMujica: aveMujicaFilteredImages.length, myGO: myGOFilteredImages.length }));
+    }
   };
 
   const cache = new CellMeasurerCache({
@@ -61,11 +85,11 @@ export default function ImageList() {
     const rowItems = imageList.slice(index * columnCount, index * columnCount + columnCount);
 
     return (
-      <CellMeasurer cache={cache} columnIndex={0} key={key} parent={parent} rowIndex={index}>
-        <div className="image-item-row" style={{ ...style }}>
+      <CellMeasurer cache={cache} columnIndex={0} key={index} parent={parent} rowIndex={index}>
+        <div className="image-item-row" key={key} style={{ ...style }}>
           {rowItems.map((image) => (
             <Box key={image.name} className="row-item">
-              <ImageItem image={image} />
+              <ImageItem image={image} key={image.name} />
             </Box>
           ))}
         </div>
@@ -86,18 +110,26 @@ export default function ImageList() {
 
   useEffect(() => {
     searchImages();
-  }, [keyword, episode, order, defaultImageList]);
+  }, [currentTab, keyword, aveMujicaEpisode, myGOEpisode, order, aveMujicaImages]);
   return (
     <>
-      <Box className="come-in-animation" sx={{ ml: 1.5, mb: 1, color: '#dadada', fontSize: 12 }}>
+      {/* <Box className="come-in-animation" sx={{ ml: 1.5, mb: 1, color: '#dadada', fontSize: 12 }}>
         相關結果：{imageList.length} 張圖
-      </Box>
+      </Box> */}
       <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
-        {imageList.length === 0 && <Box sx={{ mt: 2, color: '#e6e6e6' }}>查無截圖 QQ</Box>}
         <Box sx={{ width: '100%', height: '100%' }}>
-          <Suspense fallback={<CircularProgress size="3rem" sx={{ mt: 4 }} />}>
-            <WindowScroller>
-              {({ height, scrollTop }: WindowScrollerProps) => (
+          {currentTab === 'mygo' && (
+            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', mb: 1 }}>
+              <Box sx={{ width: '36px', mr: 3 }}>
+                <img src={underConstructionImg} alt="" style={{ width: '100%' }} />
+              </Box>
+              <Box sx={{ fontSize: '0.9rem' }}>MyGO 目前更新至第6集，持續施工中...</Box>
+            </Box>
+          )}
+          <Box>{imageList.length === 0 && <Box sx={{ mt: 2, color: '#e6e6e6' }}>查無截圖 QQ</Box>}</Box>
+          <WindowScroller>
+            {({ height, scrollTop }: WindowScrollerProps) => (
+              <Suspense fallback={<CircularProgress size="3rem" sx={{ mt: 4 }} />}>
                 <>
                   <AutoSizer disableHeight onResize={() => cache.clearAll()}>
                     {({ width }: AutoSizerChildrenProps) => (
@@ -114,9 +146,9 @@ export default function ImageList() {
                     )}
                   </AutoSizer>
                 </>
-              )}
-            </WindowScroller>
-          </Suspense>
+              </Suspense>
+            )}
+          </WindowScroller>
         </Box>
       </Box>
     </>

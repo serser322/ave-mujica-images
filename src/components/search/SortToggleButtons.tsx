@@ -2,14 +2,13 @@ import { ChangeEvent, useEffect } from 'react';
 import { ToggleButton, ToggleButtonGroup, Tooltip, useMediaQuery } from '@mui/material';
 import { RootState } from '@/store/store';
 import { useDispatch, useSelector } from 'react-redux';
-import { setOrder, setDefaultImageList } from '@/layout/contentLayoutSlice';
+import { setOrder, setAveMujicaImages } from '@/layout/contentLayoutSlice';
 import { Sort } from '@mui/icons-material';
-// import { revertedDefaultImageList } from '@/layout/contentLayoutSlice';
 
 export function SortToggleButtons() {
   const dispatch = useDispatch();
   const order = useSelector((state: RootState) => state.contentLayout.order);
-  const defaultImageList = useSelector((state: RootState) => state.contentLayout.defaultImageList);
+  const aveMujicaImages = useSelector((state: RootState) => state.contentLayout.aveMujicaImages);
   const matches = useMediaQuery('(min-width:576px)');
   const sortChangeHandler = (_event: ChangeEvent<unknown>, value: string) => {
     if (!value) return;
@@ -17,15 +16,15 @@ export function SortToggleButtons() {
   };
 
   useEffect(() => {
-    const imageList = [...defaultImageList];
+    const imageList = [...aveMujicaImages];
     if (order === 'oldest') {
       //   localStorage.setItem('order', 'oldest');
       imageList.sort((a, b) => a.episode - b.episode);
 
-      dispatch(setDefaultImageList(imageList));
+      dispatch(setAveMujicaImages(imageList));
     } else {
       imageList.sort((a, b) => b.episode - a.episode);
-      dispatch(setDefaultImageList(imageList));
+      dispatch(setAveMujicaImages(imageList));
     }
   }, [order]);
   return (
