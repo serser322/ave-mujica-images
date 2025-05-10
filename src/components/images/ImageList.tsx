@@ -123,7 +123,9 @@ export default function ImageList() {
               <Box sx={{ width: '36px', mr: 3 }}>
                 <img src={underConstructionImg} alt="" style={{ width: '100%' }} />
               </Box>
-              <Box sx={{ fontSize: '0.9rem', color: '#e6e6e6' }}>MyGO 目前更新至第6集，持續施工中...</Box>
+              <Box sx={{ fontSize: '0.9rem', color: '#e6e6e6' }}>
+                MyGO 目前更新至第{myGOImages.slice(-1)[0].episode}集，持續施工中...
+              </Box>
             </Box>
           )}
           <Box sx={{ textAlign: 'center' }}>
