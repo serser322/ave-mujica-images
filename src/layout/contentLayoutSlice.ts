@@ -2434,16 +2434,6 @@ const initialState = {
   ],
 };
 
-// const data = [
-
-// ];
-
-// const arr = initialState.myGOImages.filter((item) => {
-//   return data.find((i) => i.name === item.name);
-// });
-
-// console.log(arr);
-
 export const mujicaLatestEpisode = initialState.aveMujicaImages[initialState.aveMujicaImages.length - 1].episode;
 export const myGOLatestEpisode = initialState.myGOImages[initialState.myGOImages.length - 1].episode;
 

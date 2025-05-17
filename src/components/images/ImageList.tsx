@@ -135,7 +135,7 @@ export default function ImageList() {
                         rowRenderer={renderRow}
                         width={width}
                         scrollTop={scrollTop}
-                        erscanRowCount={15}
+                        overscanRowCount={15}
                       />
                     )}
                   </AutoSizer>
