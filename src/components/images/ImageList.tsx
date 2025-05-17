@@ -118,16 +118,6 @@ export default function ImageList() {
       </Box> */}
       <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
         <Box sx={{ width: '100%', height: '100%' }}>
-          {currentTab === 'mygo' && (
-            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', mb: 1 }}>
-              <Box sx={{ width: '36px', mr: 3 }}>
-                <img src={underConstructionImg} alt="" style={{ width: '100%' }} />
-              </Box>
-              <Box sx={{ fontSize: '0.9rem', color: '#e6e6e6' }}>
-                MyGO 目前更新至第 {myGOImages.slice(-1)[0].episode} 集，持續施工中...
-              </Box>
-            </Box>
-          )}
           <Box sx={{ textAlign: 'center' }}>
             {imageList.length === 0 && <Box sx={{ mt: 2, color: '#e6e6e6' }}>查無截圖 QQ</Box>}
           </Box>
