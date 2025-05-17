@@ -7,7 +7,6 @@ import { BaseImage } from '@/type';
 import { CellMeasurer, CellMeasurerCache, List, WindowScroller, AutoSizer } from 'react-virtualized';
 import { MeasuredCellParent } from 'react-virtualized/dist/es/CellMeasurer';
 import { setSearchResultNum } from '@/layout/contentLayoutSlice';
-import underConstructionImg from '@/assets/under-construction-symbol-icon.png';
 import 'react-virtualized/styles.css';
 import '@/styles/components/ImageList.scss';
 
